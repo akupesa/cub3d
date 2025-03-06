@@ -15,13 +15,14 @@
 
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
 	t_cub	*cub;
 
+	(void)av;
 	cub = malloc(sizeof(t_cub));
 	if (cub == NULL)
 		return (FALSE);
+	if (ac != 2)
+		simple_free(cub, "Error!\nFew or Many Arguments.\n");
 	cub->mlx = mlx_init();
 	if (cub->mlx == NULL)
 	{

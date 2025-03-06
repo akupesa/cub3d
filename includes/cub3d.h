@@ -54,15 +54,19 @@
 
 int     is_map_empty(t_cub *cub);
 int	player_validator(t_cub *cub);
+int	keys_handler(t_cub *cub, int keycode);
 int	map_validator(t_cub *cub, char *map_file);
 
 char	**map_copy(t_cub *cub);
 char	*get_next_line(int fd);
 char	chars_validator(char c);
 
-void	loop(t_cub *cub);
-void	just_free(t_cub *cub);
+void	hook(t_cub *cub);
+void	free_all(t_cub *cub);
+void	destroy_items(t_cub *cub);
 void	simple_free(t_cub *cub, char *str);
+
+t_coords	get_coords(t_cub *cub);
 
 
 #endif

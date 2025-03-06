@@ -31,4 +31,3 @@ int	extension_validator(t_cub *cub, char *file_name)
 	}
 }
 
-int	args_validator(t_cub *cub)

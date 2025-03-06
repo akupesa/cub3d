@@ -14,7 +14,8 @@
 
 
 
-void	loop(t_cub *cub)
+void	hook(t_cub *cub)
 {
-	mlx_hook(cub->window, 17, 0, just_free, cub);
+	mlx_hook(cub->window, 2, 1l << 0, keys_handler, cub);
+	mlx_hook(cub->window, 17, 0, free_all, cub);
 }

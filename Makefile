@@ -18,6 +18,8 @@ SRCS = 	srcs/all_frees.c \
 	srcs/cub_utils_0.c \
 	srcs/flood_fill_validator.c \
 	srcs/get_next_line.c \
+	srcs/keys_handlers.c \
+	srcs/loop.c \
 	srcs/main.c \
 	srcs/map_items_validator.c \
 	srcs/map_reader.c \

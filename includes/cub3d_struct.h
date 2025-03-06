@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef CUB3D_STRUCT_H
 # define CUB3D_STRUCT_H
 
@@ -18,6 +17,8 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
+	int		moves;
+	int		player_coords;
 	char	move;
 }			t_player;
 
@@ -47,6 +48,7 @@ typedef struct s_cub
 	char	**map_cpy;
 	void	*mlx;
 	void	*window;
+	t_player	*player;
 }			t_cub;
 
 

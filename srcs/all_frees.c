@@ -21,8 +21,35 @@ void	simple_free(t_cub *cub, char *str)
 	exit (0);
 }
 
-void	just_free(t_cub *cub)
+void	free_map(char **map)
 {
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+void	free_all(t_cub *cub)
+{
+	if (cub->map_cpy)
+		free_map(cub->map_cpy);
+	if (cub->map)
+		free_map(cub->map);
+	if (cub)
+	{
+		if (cub->window)
+			mlx_destroy_window(cub->mlx, cub->window);
+		if (cub->mlx)
+		{
+			mlx_destroy_display(cub->mlx);
+			free(cub->mlx);
+		}
 	free(cub);
-	exit(0);
+	}
+
 }
