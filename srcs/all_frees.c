@@ -34,7 +34,7 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	free_all(t_cub *cub)
+int	free_all(t_cub *cub)
 {
 	if (cub->map_cpy)
 		free_map(cub->map_cpy);
@@ -51,5 +51,5 @@ void	free_all(t_cub *cub)
 		}
 	free(cub);
 	}
-
+	return (TRUE);
 }

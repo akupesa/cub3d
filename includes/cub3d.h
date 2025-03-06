@@ -52,6 +52,7 @@
 // # define DOWN_KEY 65364
 # define RIGHT_KEY 65363
 
+int	free_all(t_cub *cub);
 int     is_map_empty(t_cub *cub);
 int	player_validator(t_cub *cub);
 int	keys_handler(t_cub *cub, int keycode);
@@ -62,7 +63,6 @@ char	*get_next_line(int fd);
 char	chars_validator(char c);
 
 void	hook(t_cub *cub);
-void	free_all(t_cub *cub);
 void	destroy_items(t_cub *cub);
 void	simple_free(t_cub *cub, char *str);
 

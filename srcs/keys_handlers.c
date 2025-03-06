@@ -65,6 +65,8 @@ int	keys_handler(t_cub *cub, int keycode)
 		key_handler_up(cub, player_coords.y, player_coords.x);
 	else if(keycode == S)
 		key_handler_down(cub, player_coords.y, player_coords.x);
+	else if (keycode == ESC)
+		free_all(cub);
 	else
 		return (FALSE);
 	return (TRUE);

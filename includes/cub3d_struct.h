@@ -15,11 +15,10 @@
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	float		x;
+	float		y;
 	int		moves;
 	int		player_coords;
-	char	move;
 }			t_player;
 
 typedef struct s_coords

@@ -35,6 +35,7 @@ int	main(int ac, char **av)
 		simple_free(cub, "Error!\nWindow creation failed.\n");
 		return (1);
 	}
+	hook(cub);
 	mlx_loop(cub->mlx);
 	//mlx_destroy_window(cub->mlx, cub->window);
 	free(cub);
