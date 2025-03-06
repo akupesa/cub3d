@@ -6,7 +6,7 @@
 #    By: akupesa <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 13:27:06 by akupesa           #+#    #+#              #
-#    Updated: 2025/02/26 16:03:18 by akupesa          ###   ########.fr        #
+#    Updated: 2025/03/06 11:24:34 by gecarval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ $(MINILIBX):
 
 $(NAME): $(OBJ) $(LIBFT) $(MINILIBX)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJ) $(LIBFT) $(MLX_FLAGS)
+
 clean:
 	make -C $(LIBFT_DIR) clean
 	make -C $(MINILIBX_DIR) clean
