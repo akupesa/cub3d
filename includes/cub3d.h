@@ -55,8 +55,9 @@
 int	free_all(t_cub *cub);
 int     is_map_empty(t_cub *cub);
 int	player_validator(t_cub *cub);
-int	keys_handler(t_cub *cub, int keycode);
+int	keys_handler(int keycode, t_cub *cub);
 int	map_validator(t_cub *cub, char *map_file);
+int	load_map(t_cub *cub, const char *file_name);
 
 char	**map_copy(t_cub *cub);
 char	*get_next_line(int fd);

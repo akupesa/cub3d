@@ -34,22 +34,26 @@ void	free_map(char **map)
 	free(map);
 }
 
+int	ft_exit(int __status)
+{
+	exit(__status);
+	return (__status);
+}
+
 int	free_all(t_cub *cub)
 {
-	if (cub->map_cpy)
-		free_map(cub->map_cpy);
-	if (cub->map)
+	if (cub == NULL)
+		return (ft_exit(0));
+	if (cub->map != NULL)
 		free_map(cub->map);
-	if (cub)
-	{
-		if (cub->window)
-			mlx_destroy_window(cub->mlx, cub->window);
-		if (cub->mlx)
-		{
-			mlx_destroy_display(cub->mlx);
-			free(cub->mlx);
-		}
+	if (cub->map_cpy != NULL)
+		free_map(cub->map_cpy);
+	if (cub->window != NULL)
+		mlx_destroy_window(cub->mlx, cub->window);
+	if (cub->mlx != NULL)
+		mlx_destroy_display(cub->mlx);
+	if (cub->mlx != NULL)
+		free(cub->mlx);
 	free(cub);
-	}
-	return (TRUE);
+	return (ft_exit(0));
 }

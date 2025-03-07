@@ -32,19 +32,15 @@ t_coords	get_coords(t_cub *cub)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (cub->map[i])
+	i = -1;
+	while (cub != NULL && cub->map != NULL && cub->map[++i] != NULL)
 	{
-		j = 0;
-		while (cub->map[j])
-		{
+		j = -1;
+		while (cub->map[i][++j] != '\0')
 			if (cub->map[i][j] == 'N')
 				return ((t_coords){j, i});
-			j++;
-		}
-		i++;
 	}
-	return ((t_coords){-1, 1});
+	return ((t_coords){0, 0});
 }
 
 

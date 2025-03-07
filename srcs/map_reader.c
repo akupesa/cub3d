@@ -12,49 +12,25 @@
 
 #include "../includes/cub3d.h"
 
-
-int	read_file(t_cub *cub, char *map)
-{
-	int		i;
-	char	**temp;
-
-	if (!map)
-		return (FALSE);
-	temp = (char **) malloc(sizeof(char *) * (cub->map_h + 1));
-	if (!temp)
-		return (FALSE);
-	temp[cub->map_h] = NULL;
-	i = 0;
-	while (i < cub->map_h - 1)
-	{
-		temp[i] = cub->map[i];
-		i++;
-	}
-	temp[i] = map;
-	if (cub->map)
-		free(cub->map);
-	cub->map = temp;
-	return (TRUE);
-}
 int	load_map(t_cub *cub, const char *file_name)
 {
-	int		fd;
-	char	*map;
+	int	fd;
+	int	i;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		simple_free(cub, "Error!\nInvalid Path or File Not Found.\n");
-	cub->map_h = 0;
-	cub->map = NULL;
-	while (1)
+	cub->map_h = 14;
+	cub->map_w = 18;
+	cub->map = (char **) ft_calloc((cub->map_h + 1), sizeof(char *));
+	if (cub->map == NULL)
+		simple_free(cub, "Error!\nMap Allocation Failed!!!\n");
+	i = -1;
+	while (++i < cub->map_h)
 	{
-		map = get_next_line(fd);
-		if (!map)
-			break;
-		if (!read_file(cub, map))
-			break;
+		cub->map[i] = get_next_line(fd);
+		printf("%s", cub->map[i]);
 	}
-	free(map);
 	close(fd);
 	if (!is_map_empty(cub))
 		simple_free(cub, "Error!\nEmpty Map.\n");

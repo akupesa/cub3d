@@ -12,8 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-
-
 void	hook(t_cub *cub)
 {
 	mlx_hook(cub->window, 2, 1l << 0, keys_handler, cub);

@@ -18,11 +18,12 @@ int	main(int ac, char **av)
 	t_cub	*cub;
 
 	(void)av;
-	cub = malloc(sizeof(t_cub));
-	if (cub == NULL)
-		return (FALSE);
+	cub = NULL;
 	if (ac != 2)
 		simple_free(cub, "Error!\nFew or Many Arguments.\n");
+	cub = ft_calloc(1, sizeof(t_cub));
+	if (cub == NULL)
+		return (FALSE);
 	cub->mlx = mlx_init();
 	if (cub->mlx == NULL)
 	{
@@ -35,9 +36,9 @@ int	main(int ac, char **av)
 		simple_free(cub, "Error!\nWindow creation failed.\n");
 		return (1);
 	}
+	load_map(cub, av[1]);
 	hook(cub);
 	mlx_loop(cub->mlx);
-	//mlx_destroy_window(cub->mlx, cub->window);
 	free(cub);
 	return (TRUE);
 }
