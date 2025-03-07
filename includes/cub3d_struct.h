@@ -23,9 +23,15 @@ typedef struct s_player
 
 typedef struct s_coords
 {
-	int		x;
+  int		x;
 	int		y;
 }			t_coords;
+
+typedef struct s_vector2d
+{
+  float		x;
+	float		y;
+}			t_vector2d;
 
 typedef struct s_ray
 {

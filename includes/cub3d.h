@@ -64,6 +64,7 @@ char	*get_next_line(int fd);
 char	chars_validator(char c);
 
 void	hook(t_cub *cub);
+int	free_all(void *cub);
 void	destroy_items(t_cub *cub);
 void	simple_free(t_cub *cub, char *str);
 

@@ -12,42 +12,42 @@
 
 #include "../includes/cub3d.h"
 
-void	key_handler_left(t_cub *cub, int p_y, int p_x)
+void	key_handler_left(t_cub *cub, t_coords *vector)
 {
-	if (cub->map[p_y][p_x - 1] != '1')
+	if (cub->map[vector->y][vector->x -1] != '1')
 	{
-		cub->map[p_y][p_x - 1] = 'N';
-		cub->map[p_y][p_x] = '0';
+		cub->map[vector->y][vector->x - 1] = 'N';
+		cub->map[vector->y][vector->x] = '0';
 		cub->player->moves++;
 	}
 }
 
-void	key_handler_right(t_cub *cub, int p_y, int p_x)
+void	key_handler_right(t_cub *cub, t_coords *vector)
 {
-	if (cub->map[p_y][p_x + 1] != '1')
+	if (cub->map[vector->y][vector->x + 1] != '1')
 	{
-		cub->map[p_y][p_x + 1] = 'N';
-		cub->map[p_y][p_x] = '0';
+		cub->map[vector->y][vector->x + 1] = 'N';
+		cub->map[vector->y][vector->x] = '0';
 		cub->player->moves++;
 	}
 }
 
-void	key_handler_up(t_cub *cub, int p_y, int p_x)
+void	key_handler_up(t_cub *cub, t_coords *vector)
 {
-	if (cub->map[p_y - 1][p_x] != 1)
+	if (cub->map[vector->y - 1][vector->x] != 1)
 	{
-		cub->map[p_y - 1][p_x] = 'N';
-		cub->map[p_y][p_x] = '0';
+		cub->map[vector->y - 1][vector->x] = 'N';
+		cub->map[vector->y][vector->x] = '0';
 		cub->player->moves++;
 	}
 }
 
-void	key_handler_down(t_cub *cub, int p_y, int p_x)
+void	key_handler_down(t_cub *cub, t_coords *vector)
 {
-	if (cub->map[p_y + 1][p_x] != '1')
+	if (cub->map[vector->y + 1][vector->x] != '1')
 	{
-		cub->map[p_y + 1][p_x] = 'N';
-		cub->map[p_y][p_x] = '0';
+		cub->map[vector->y + 1][vector->x] = 'N';
+		cub->map[vector->y][vector->x] = '0';
 		cub->player->moves++;
 	}
 }
@@ -60,13 +60,13 @@ int	keys_handler(int keycode, t_cub *cub)
 		free_all(cub);
 	player_coords = get_coords(cub);
 	if (keycode == A)
-		key_handler_left(cub, player_coords.y, player_coords.x);
+		key_handler_left(cub, &player_coords);
 	else if (keycode == D)
-		key_handler_right(cub, player_coords.y, player_coords.x);
+		key_handler_right(cub, &player_coords);
 	else if (keycode == W)
-		key_handler_up(cub, player_coords.y, player_coords.x);
+		key_handler_up(cub, &player_coords);
 	else if(keycode == S)
-		key_handler_down(cub, player_coords.y, player_coords.x);
+		key_handler_down(cub, &player_coords);
 	else
 		return (FALSE);
 	return (TRUE);
