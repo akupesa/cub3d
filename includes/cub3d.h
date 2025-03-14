@@ -52,19 +52,18 @@
 // # define DOWN_KEY 65364
 # define RIGHT_KEY 65363
 
-int	free_all(t_cub *cub);
-int     is_map_empty(t_cub *cub);
-int	player_validator(t_cub *cub);
-int	keys_handler(int keycode, t_cub *cub);
-int	map_validator(t_cub *cub, char *map_file);
-int	load_map(t_cub *cub, const char *file_name);
+int     	free_all(t_cub *cub);
+int             is_map_empty(t_cub *cub);
+int     	player_validator(t_cub *cub);
+int     	keys_handler(int keycode, t_cub *cub);
+int	        map_validator(t_cub *cub, char *map_file);
+int	        load_map(t_cub *cub, const char *file_name);
 
 char	**map_copy(t_cub *cub);
 char	*get_next_line(int fd);
 char	chars_validator(char c);
 
 void	hook(t_cub *cub);
-int	free_all(void *cub);
 void	destroy_items(t_cub *cub);
 void	simple_free(t_cub *cub, char *str);
 

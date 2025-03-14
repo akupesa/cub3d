@@ -56,18 +56,16 @@ int	keys_handler(int keycode, t_cub *cub)
 {
 	t_coords	player_coords;
 
-	if (keycode == ESC)
+        if (keycode == ESC)
 		free_all(cub);
 	player_coords = get_coords(cub);
 	if (keycode == A)
-		key_handler_left(cub, &player_coords);
+	        key_handler_left(cub, &player_coords);
 	else if (keycode == D)
 		key_handler_right(cub, &player_coords);
 	else if (keycode == W)
 		key_handler_up(cub, &player_coords);
-	else if(keycode == S)
+	else if (keycode == S)
 		key_handler_down(cub, &player_coords);
-	else
-		return (FALSE);
-	return (TRUE);
+	return (FALSE);
 }

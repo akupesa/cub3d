@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = cub3d
-CC = cc
+CC = gcc -g
 CFLAGS = -Wall -Werror -Wextra
 
 SRCS = 	srcs/all_frees.c \
