@@ -14,7 +14,7 @@
 
 char	chars_validator(char c)
 {
-	return (c == '0' || c == '1' || c == 'N');
+	return (c == '0' || c == '1' || c == 'N' || c == ' ');
 }
 
 int	player_validator(t_cub *cub)
@@ -33,7 +33,8 @@ int	player_validator(t_cub *cub)
 			if (cub->map[y][x] == 'N')
 				player_counter++;
 		}
-		
+                if (is_there_two_n(cub) == TRUE)
+		        simple_free(cub, "Error!\nMap contains more than one new line.\n");
 	}
 	if (player_counter != 1)
 		return (FALSE);

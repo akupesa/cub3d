@@ -36,18 +36,17 @@ char	**map_copy(t_cub *cub)
 	return (copy);
 }
 
-int	map_validator(t_cub *cub, char *map_file)
+int	map_validator(t_cub *cub)
 {
 	int	x;
 	int	y;
-	(void)map_file;
 
-	y = -1;
 	if (!player_validator(cub))
 	{
 		simple_free(cub, "Error!\nInvalid number of player.\n");
 		return (1);
 	}
+	y = -1;
 	while (++y < cub->map_h)
 	{
 		x = -1;

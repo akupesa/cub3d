@@ -18,3 +18,23 @@ int     is_map_empty(t_cub *cub)
                 return (0);
         return (1);
 }
+
+int     is_there_two_n(t_cub *cub)
+{
+        int     i;
+        int     j;
+
+        i = 0;
+        while (cub->map[i] != NULL)
+        {
+                j = 0;
+                while (cub->map[i][j] != '\0')
+                {
+                        if (cub->map[i][j] == '\n' && cub->map[i + 1][j] == '\n')
+                                return (TRUE);
+                        j++;
+                }
+                i++;
+        }
+        return (FALSE);
+}

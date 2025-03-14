@@ -30,13 +30,14 @@ int	main(int ac, char **av)
 		simple_free(cub, "Error!\nMLX initialization failed.\n");
 		return (1);
 	}
+	load_map(cub, av[1]);
+        map_validator(cub);
 	cub->window = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
 	if (cub->window == NULL)
 	{
 		simple_free(cub, "Error!\nWindow creation failed.\n");
 		return (1);
 	}
-	load_map(cub, av[1]);
 	hook(cub);
 	mlx_loop(cub->mlx);
 	free(cub);
