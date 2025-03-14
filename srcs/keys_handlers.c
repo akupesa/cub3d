@@ -18,7 +18,8 @@ void	key_handler_left(t_cub *cub, t_coords *vector)
 	{
 		cub->map[vector->y][vector->x - 1] = 'N';
 		cub->map[vector->y][vector->x] = '0';
-		cub->player->moves++;
+                if (cub->player)
+		        cub->player->moves++;
 	}
 }
 
@@ -28,17 +29,19 @@ void	key_handler_right(t_cub *cub, t_coords *vector)
 	{
 		cub->map[vector->y][vector->x + 1] = 'N';
 		cub->map[vector->y][vector->x] = '0';
-		cub->player->moves++;
+                if (cub->player)
+		        cub->player->moves++;
 	}
 }
 
 void	key_handler_up(t_cub *cub, t_coords *vector)
 {
-	if (cub->map[vector->y - 1][vector->x] != 1)
+	if (cub->map[vector->y - 1][vector->x] != '1')
 	{
 		cub->map[vector->y - 1][vector->x] = 'N';
 		cub->map[vector->y][vector->x] = '0';
-		cub->player->moves++;
+                if (cub->player)
+		        cub->player->moves++;
 	}
 }
 
@@ -48,7 +51,8 @@ void	key_handler_down(t_cub *cub, t_coords *vector)
 	{
 		cub->map[vector->y + 1][vector->x] = 'N';
 		cub->map[vector->y][vector->x] = '0';
-		cub->player->moves++;
+                if (cub->player)
+        		cub->player->moves++;
 	}
 }
 
@@ -67,5 +71,7 @@ int	keys_handler(int keycode, t_cub *cub)
 		key_handler_up(cub, &player_coords);
 	else if (keycode == S)
 		key_handler_down(cub, &player_coords);
-	return (FALSE);
+	else
+		return (FALSE);
+	return (TRUE);
 }
