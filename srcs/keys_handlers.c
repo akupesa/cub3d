@@ -14,10 +14,10 @@
 
 void	key_handler_left(t_cub *cub, t_coords *vector)
 {
-	if (cub->map[vector->y][vector->x -1] != '1')
+	if (cub->map.matrix[vector->y][vector->x -1] != '1')
 	{
-		cub->map[vector->y][vector->x - 1] = 'N';
-		cub->map[vector->y][vector->x] = '0';
+		cub->map.matrix[vector->y][vector->x - 1] = 'N';
+		cub->map.matrix[vector->y][vector->x] = '0';
                 if (cub->player)
 		        cub->player->moves++;
 	}
@@ -25,10 +25,10 @@ void	key_handler_left(t_cub *cub, t_coords *vector)
 
 void	key_handler_right(t_cub *cub, t_coords *vector)
 {
-	if (cub->map[vector->y][vector->x + 1] != '1')
+	if (cub->map.matrix[vector->y][vector->x + 1] != '1')
 	{
-		cub->map[vector->y][vector->x + 1] = 'N';
-		cub->map[vector->y][vector->x] = '0';
+		cub->map.matrix[vector->y][vector->x + 1] = 'N';
+		cub->map.matrix[vector->y][vector->x] = '0';
                 if (cub->player)
 		        cub->player->moves++;
 	}
@@ -36,10 +36,10 @@ void	key_handler_right(t_cub *cub, t_coords *vector)
 
 void	key_handler_up(t_cub *cub, t_coords *vector)
 {
-	if (cub->map[vector->y - 1][vector->x] != '1')
+	if (cub->map.matrix[vector->y - 1][vector->x] != '1')
 	{
-		cub->map[vector->y - 1][vector->x] = 'N';
-		cub->map[vector->y][vector->x] = '0';
+		cub->map.matrix[vector->y - 1][vector->x] = 'N';
+		cub->map.matrix[vector->y][vector->x] = '0';
                 if (cub->player)
 		        cub->player->moves++;
 	}
@@ -47,10 +47,10 @@ void	key_handler_up(t_cub *cub, t_coords *vector)
 
 void	key_handler_down(t_cub *cub, t_coords *vector)
 {
-	if (cub->map[vector->y + 1][vector->x] != '1')
+	if (cub->map.matrix[vector->y + 1][vector->x] != '1')
 	{
-		cub->map[vector->y + 1][vector->x] = 'N';
-		cub->map[vector->y][vector->x] = '0';
+		cub->map.matrix[vector->y + 1][vector->x] = 'N';
+		cub->map.matrix[vector->y][vector->x] = '0';
                 if (cub->player)
         		cub->player->moves++;
 	}

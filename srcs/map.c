@@ -20,15 +20,15 @@ char	**map_copy(t_cub *cub)
 
 	i = 0;
 	copy = NULL;
-	copy = (char **)malloc(sizeof(char *) * (cub->map_h + 1));
-	copy[cub->map_h] = NULL;
-	while (i < cub->map_h)
+	copy = (char **)ft_calloc(sizeof(char *), (cub->map.map_h + 1));
+	copy[cub->map.map_h] = NULL;
+	while (i < cub->map.map_h)
 	{
-		copy[i] = (char *)malloc(sizeof(char ) * (cub->map_w + 1));
+		copy[i] = (char *)ft_calloc(sizeof(char ), (cub->map.map_w + 1));
 		j = 0;
-		while (j < cub->map_w)
+		while (j < cub->map.map_w)
 		{
-			copy[i][j] = cub->map[i][j];
+			copy[i][j] = cub->map.matrix[i][j];
 			j++;
 		}
 		i++;
@@ -47,12 +47,12 @@ int	map_validator(t_cub *cub)
 		return (1);
 	}
 	y = -1;
-	while (++y < cub->map_h)
+	while (++y < cub->map.map_h)
 	{
 		x = -1;
-		while (++x < cub->map_w)
+		while (++x < cub->map.map_w)
 		{
-			if (!chars_validator(cub->map[y][x]))
+			if (!chars_validator(cub->map.matrix[y][x]))
 			{
 				simple_free(cub, "Error!\nMap contains invalid characters.\n");
 				return (1);

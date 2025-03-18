@@ -14,7 +14,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <math.h>
 # include <time.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -31,7 +30,6 @@
 # include <sys/types.h>
 
 # include "cub3d_struct.h"
-# include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 
 # define TRUE 0
@@ -53,22 +51,22 @@
 # define RIGHT_KEY 65363
 
 int     	free_all(t_cub *cub);
-int             is_map_empty(t_cub *cub);
-int             is_there_two_n(t_cub *cub);
+int         is_map_empty(t_cub *cub);
+int         is_there_two_n(t_cub *cub);
 int     	player_validator(t_cub *cub);
 int     	keys_handler(int keycode, t_cub *cub);
 int	        map_validator(t_cub *cub);
 int	        load_map(t_cub *cub, const char *file_name);
 
-char	**map_copy(t_cub *cub);
-char	*get_next_line(int fd);
-char	chars_validator(char c);
+char	    **map_copy(t_cub *cub);
+char	    *get_next_line(int fd);
+char        chars_validator(char c);
 
-void	hook(t_cub *cub);
-void	destroy_items(t_cub *cub);
-void	simple_free(t_cub *cub, char *str);
+void	    hook(t_cub *cub);
+void	    destroy_items(t_cub *cub);
+void	    simple_free(t_cub *cub, char *str);
 
-t_coords	get_coords(t_cub *cub);
+t_coords    get_coords(t_cub *cub);
 
 
 #endif

@@ -12,7 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-
 int	main(int ac, char **av)
 {
 	t_cub	*cub;
@@ -31,7 +30,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	load_map(cub, av[1]);
-        map_validator(cub);
+  map_validator(cub);
 	cub->window = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
 	if (cub->window == NULL)
 	{

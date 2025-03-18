@@ -25,17 +25,17 @@ int	player_validator(t_cub *cub)
 
 	y = -1;
 	player_counter = 0;
-	while (++y < cub->map_h)
+	while (++y < cub->map.map_h)
 	{
 		x = -1;
-		while (++x < cub->map_w)
+		while (++x < cub->map.map_w)
 		{
-			if (cub->map[y][x] == 'N')
+			if (cub->map.matrix[y][x] == 'N')
 				player_counter++;
 		}
-                if (is_there_two_n(cub) == TRUE)
-		        simple_free(cub, "Error!\nMap contains more than one new line.\n");
 	}
+	if (is_there_two_n(cub) == TRUE)
+		simple_free(cub, "Error!\nMap contains more than one new line.\n");
 	if (player_counter != 1)
 		return (FALSE);
 	return (TRUE);

@@ -1,6 +1,11 @@
 node_modules/
+minilibx-linux/libmlx.a
+minilibx-linux/libmlx_Linux.a
+libft/libft.a
+cub3d
+tags
+.clang-format
 .env
 *.swp
 *.log
 *.o
-cub3d

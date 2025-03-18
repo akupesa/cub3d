@@ -14,7 +14,7 @@
 
 int     is_map_empty(t_cub *cub)
 {
-        if (cub->map == NULL || cub->map_h == 0)
+        if (cub->map.matrix == NULL || cub->map.map_h == 0)
                 return (0);
         return (1);
 }
@@ -23,15 +23,21 @@ int     is_there_two_n(t_cub *cub)
 {
         int     i;
         int     j;
+        int     count;
 
         i = 0;
-        while (cub->map[i] != NULL)
+        count = 0;
+        while (i < cub->map.map_h)
         {
                 j = 0;
-                while (cub->map[i][j] != '\0')
+                while (cub->map.matrix[i][j] != '\0')
                 {
-                        if (cub->map[i][j] == '\n' && cub->map[i + 1][j] == '\n')
+                        if (cub->map.matrix[i][j] == '\n')
+                                count++;
+                        else if (cub->map.matrix[i][j] != '\n' && count > 1)
                                 return (TRUE);
+                        else if (cub->map.matrix[i][j] != '\n')
+                                count = 0;
                         j++;
                 }
                 i++;

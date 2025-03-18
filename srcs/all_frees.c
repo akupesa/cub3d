@@ -44,10 +44,10 @@ int	free_all(t_cub *cub)
 {
 	if (cub == NULL)
 		return (ft_exit(0));
-	if (cub->map != NULL)
-		free_map(cub->map);
-	if (cub->map_cpy != NULL)
-		free_map(cub->map_cpy);
+	if (cub->map.matrix != NULL)
+		free_map(cub->map.matrix);
+	if (cub->map.matrix_cpy != NULL)
+		free_map(cub->map.matrix_cpy);
 	if (cub->window != NULL)
 		mlx_destroy_window(cub->mlx, cub->window);
 	if (cub->mlx != NULL)
