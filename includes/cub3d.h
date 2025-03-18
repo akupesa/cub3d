@@ -32,8 +32,6 @@
 # include "cub3d_struct.h"
 # include "../minilibx-linux/mlx.h"
 
-# define TRUE 0
-# define FALSE 1
 # define BUFFER_SIZE 42
 
 # define WIDTH 1280
@@ -41,16 +39,16 @@
 
 # define ESC 65307
 
-# define A 97
-# define D 100
-# define S 115
-# define W 119
+# define MLX_A 97
+# define MLX_D 100
+# define MLX_S 115
+# define MLX_W 119
 // # define UP_KEY 65362
 # define LEFT_KEY 65361
 // # define DOWN_KEY 65364
 # define RIGHT_KEY 65363
 
-int     	free_all(t_cub *cub);
+int     	free_all(t_cub *cub, int fd);
 int         is_map_empty(t_cub *cub);
 int         is_there_two_n(t_cub *cub);
 int     	player_validator(t_cub *cub);
@@ -64,7 +62,7 @@ char        chars_validator(char c);
 
 void	    hook(t_cub *cub);
 void	    destroy_items(t_cub *cub);
-void	    simple_free(t_cub *cub, char *str);
+void	    simple_free(t_cub *cub, char *str, int fd);
 
 t_coords    get_coords(t_cub *cub);
 

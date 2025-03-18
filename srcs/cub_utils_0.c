@@ -35,12 +35,12 @@ int     is_there_two_n(t_cub *cub)
                         if (cub->map.matrix[i][j] == '\n')
                                 count++;
                         else if (cub->map.matrix[i][j] != '\n' && count > 1)
-                                return (TRUE);
+                                return (true);
                         else if (cub->map.matrix[i][j] != '\n')
                                 count = 0;
                         j++;
                 }
                 i++;
         }
-        return (FALSE);
+        return (false);
 }

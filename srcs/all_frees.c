@@ -13,12 +13,18 @@
 
 #include "../includes/cub3d.h"
 
-void	simple_free(t_cub *cub, char *str)
+int	ft_exit(int __status)
 {
-	if (str)
-		ft_putstr_fd(str, 1);
+	exit(__status);
+	return (__status);
+}
+
+void	simple_free(t_cub *cub, char *str, int fd)
+{
+	if (str != NULL)
+		ft_putstr_fd(str, 2);
 	free (cub);
-	exit (0);
+	exit (fd);
 }
 
 void	free_map(char **map)
@@ -26,21 +32,12 @@ void	free_map(char **map)
 	int	i;
 
 	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
+	while (map != NULL && map[i] != NULL)
+		free(map[i++]);
 	free(map);
 }
 
-int	ft_exit(int __status)
-{
-	exit(__status);
-	return (__status);
-}
-
-int	free_all(t_cub *cub)
+int	free_all(t_cub *cub, int fd)
 {
 	if (cub == NULL)
 		return (ft_exit(0));
@@ -55,5 +52,5 @@ int	free_all(t_cub *cub)
 	if (cub->mlx != NULL)
 		free(cub->mlx);
 	free(cub);
-	return (ft_exit(0));
+	return (ft_exit(fd));
 }

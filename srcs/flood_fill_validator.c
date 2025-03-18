@@ -50,7 +50,7 @@ void	verify_path(t_cub *cub)
 
 	p_coords = get_coords(cub);
 	cub->map.matrix_cpy = map_copy(cub);
-  flood_fill(cub, p_coords);
+	flood_fill(cub, p_coords);
 	if (cub->map.matrix_cpy[p_coords.y][p_coords.x] != 'X')
-		simple_free(cub, "Error\nMap is not closed\n");
+		simple_free(cub, "Error\nMap is not closed\n", 2);
 }

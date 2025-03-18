@@ -19,12 +19,12 @@ int	load_map(t_cub *cub, const char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		simple_free(cub, "Error!\nInvalid Path or File Not Found.\n");
+		simple_free(cub, "Error!\nInvalid Path or File Not Found.\n", 2);
 	cub->map.map_h = 14;
 	cub->map.map_w = 18;
 	cub->map.matrix = (char **) ft_calloc((cub->map.map_h + 1), sizeof(char *));
 	if (cub->map.matrix == NULL)
-		simple_free(cub, "Error!\nMap Allocation Failed!!!\n");
+		simple_free(cub, "Error!\nMap Allocation Failed!!!\n", 2);
 	i = -1;
 	while (++i < cub->map.map_h)
 	{
@@ -33,6 +33,6 @@ int	load_map(t_cub *cub, const char *file_name)
 	}
 	close(fd);
 	if (!is_map_empty(cub))
-		simple_free(cub, "Error!\nEmpty Map.\n");
+		simple_free(cub, "Error!\nEmpty Map.\n", 2);
 	return (1);
 }

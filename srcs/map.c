@@ -41,10 +41,10 @@ int	map_validator(t_cub *cub)
 	int	x;
 	int	y;
 
-	if (!player_validator(cub))
+	if (player_validator(cub))
 	{
-		simple_free(cub, "Error!\nInvalid number of player.\n");
-		return (1);
+		simple_free(cub, "Error!\nInvalid number of player.\n", 2);
+		return (true);
 	}
 	y = -1;
 	while (++y < cub->map.map_h)
@@ -54,10 +54,10 @@ int	map_validator(t_cub *cub)
 		{
 			if (!chars_validator(cub->map.matrix[y][x]))
 			{
-				simple_free(cub, "Error!\nMap contains invalid characters.\n");
-				return (1);
+				simple_free(cub, "Error!\nMap contains invalid characters.\n", 2);
+				return (true);
 			}
 		}
 	}
-	return (0);
+	return (false);
 }
