@@ -20,13 +20,13 @@ char	**map_copy(t_cub *cub)
 
 	i = 0;
 	copy = NULL;
-	copy = (char **)ft_calloc(sizeof(char *), (cub->map.map_h + 1));
-	copy[cub->map.map_h] = NULL;
-	while (i < cub->map.map_h)
+	copy = (char **)ft_calloc(sizeof(char *), (cub->map.height + 1));
+	copy[cub->map.height] = NULL;
+	while (i < cub->map.height)
 	{
-		copy[i] = (char *)ft_calloc(sizeof(char ), (cub->map.map_w + 1));
+		copy[i] = (char *)ft_calloc(sizeof(char ), (cub->map.width + 1));
 		j = 0;
-		while (j < cub->map.map_w)
+		while (j < cub->map.width)
 		{
 			copy[i][j] = cub->map.matrix[i][j];
 			j++;
@@ -47,10 +47,10 @@ int	map_validator(t_cub *cub)
 		return (true);
 	}
 	y = -1;
-	while (++y < cub->map.map_h)
+	while (++y < cub->map.height)
 	{
 		x = -1;
-		while (++x < cub->map.map_w)
+		while (++x < cub->map.width)
 		{
 			if (!chars_validator(cub->map.matrix[y][x]))
 			{

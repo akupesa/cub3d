@@ -14,7 +14,7 @@
 
 void	flood_fill(t_cub *cub, t_coords vector)
 {
-	if (vector.x < 0 || vector.x >= cub->map.map_w || vector.y < 0 || vector.y >= cub->map.map_h)
+	if (vector.x < 0 || vector.x >= cub->map.width || vector.y < 0 || vector.y >= cub->map.height)
 		return ;
 	if (cub->map.matrix_cpy[vector.y][vector.x] == 'X')
 		return ;

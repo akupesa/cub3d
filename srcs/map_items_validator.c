@@ -25,10 +25,10 @@ int	player_validator(t_cub *cub)
 
 	y = -1;
 	player_counter = 0;
-	while (++y < cub->map.map_h)
+	while (++y < cub->map.height)
 	{
 		x = -1;
-		while (++x < cub->map.map_w)
+		while (++x < cub->map.width)
 			if (cub->map.matrix[y][x] == 'N')
 				player_counter++;
 	}

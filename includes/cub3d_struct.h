@@ -58,6 +58,12 @@ typedef struct s_cardial
 	int			WE;
 }			t_cardial;
 
+typedef struct s_list
+{
+        int     list;
+        char    *list_k;
+}               t_list;
+
 typedef struct s_hash
 {
 	t_quad		square;
@@ -66,8 +72,8 @@ typedef struct s_hash
 
 typedef struct s_map
 {
-	int			map_h;
-	int			map_w;
+	int			height;
+	int			width;
 	t_hash		**map;
 	char		**matrix;
 	char		**matrix_cpy;
