@@ -32,8 +32,6 @@ int	player_validator(t_cub *cub)
 			if (cub->map.matrix[y][x] == 'N')
 				player_counter++;
 	}
-	if (is_there_two_n(cub) == true)
-		simple_free(cub, "Error!\nMap contains more than one new line.\n", 2);
 	if (player_counter != 1)
 		return (false);
 	return (true);

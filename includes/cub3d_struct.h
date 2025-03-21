@@ -63,7 +63,7 @@ typedef struct s_cardial
 typedef struct s_hash
 {
 	t_quad		square;
-	t_list		list;
+//	t_list		list;
 }			t_hash;
 
 typedef struct s_map

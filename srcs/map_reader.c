@@ -31,12 +31,12 @@ char	*ft_strjoint(char *s1, char *s2)
 		result[i] = ((unsigned char *)s1)[i];
 	while (s2 != NULL && s2[j] != '\0')
 		result[i++] = ((unsigned char *)s2)[j++];
-/*	if (s1 != NULL)
+	if (s1 != NULL)
 		free(s1);
 	s1 = NULL;
 	if (s2 != NULL)
 		free(s2);
-	s2 = NULL;*/
+	s2 = NULL;
 	return (result);
 }
 
@@ -80,6 +80,8 @@ void		get_map_matrix(t_cub *cub, const char *file_name)
 		i = read(fd, buffer, BUFFER_SIZE);
 		fullmap = ft_strjoint(fullmap, buffer);
 	}
+        if (is_there_two_n(cub) == true)
+                simple_free(cub, "Error!\nMap contains more than one followed newline.\n", 2);
 	cub->map.matrix = ft_split(fullmap, '\n');
 	is_map_empty(cub, fd, fullmap);
 	close(fd);
