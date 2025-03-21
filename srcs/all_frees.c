@@ -19,14 +19,6 @@ int	ft_exit(int __status)
 	return (__status);
 }
 
-void	simple_free(t_cub *cub, char *str, int fd)
-{
-	if (str != NULL)
-		ft_putstr_fd(str, 2);
-	free (cub);
-	exit (fd);
-}
-
 void	free_map(char **map)
 {
 	int	i;
@@ -34,13 +26,14 @@ void	free_map(char **map)
 	i = 0;
 	while (map != NULL && map[i] != NULL)
 		free(map[i++]);
-	free(map);
+	if (map != NULL)
+		free(map);
 }
 
-int	free_all(t_cub *cub, int fd)
+static void	free_cub(t_cub *cub)
 {
 	if (cub == NULL)
-		return (ft_exit(0));
+		return ;
 	if (cub->map.matrix != NULL)
 		free_map(cub->map.matrix);
 	if (cub->map.matrix_cpy != NULL)
@@ -52,5 +45,18 @@ int	free_all(t_cub *cub, int fd)
 	if (cub->mlx != NULL)
 		free(cub->mlx);
 	free(cub);
+}
+
+void	simple_free(t_cub *cub, char *str, int fd)
+{
+	if (str != NULL)
+		ft_putstr_fd(str, 2);
+	free_cub(cub);
+	exit (fd);
+}
+
+int	free_all(t_cub *cub, int fd)
+{
+	free_cub(cub);
 	return (ft_exit(fd));
 }

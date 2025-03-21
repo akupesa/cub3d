@@ -12,11 +12,17 @@
 
 #include "../includes/cub3d.h"
 
-int     is_map_empty(t_cub *cub)
+void     is_map_empty(t_cub *cub, int fd, char *fullmap)
 {
-        if (cub->map.matrix == NULL || cub->map.height == 0)
-                return (0);
-        return (1);
+        if (cub->map.matrix == NULL ||
+                (cub->map.height == 1 &&
+                cub->map.matrix[0] == NULL))
+	{
+		close(fd);
+		if (fullmap != NULL)
+			free(fullmap);
+		simple_free(cub, "Fatal Error!\nFailure on Map Allocation", 1);
+	}
 }
 
 int     is_there_two_n(t_cub *cub)

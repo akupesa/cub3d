@@ -16,6 +16,8 @@
 # include <math.h>
 # include "../libft/libft.h"
 
+typedef struct s_list t_list;
+
 typedef struct s_coords
 {
 	int			x;
@@ -57,12 +59,6 @@ typedef struct s_cardial
 	int			SO;
 	int			WE;
 }			t_cardial;
-
-typedef struct s_list
-{
-        int     list;
-        char    *list_k;
-}               t_list;
 
 typedef struct s_hash
 {
