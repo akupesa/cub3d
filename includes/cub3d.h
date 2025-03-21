@@ -33,6 +33,7 @@
 # include "../minilibx-linux/mlx.h"
 
 # define BUFFER_SIZE 42
+# define TABLE_SIZE 53
 
 # define WIDTH 1280
 # define HEIGHT 720

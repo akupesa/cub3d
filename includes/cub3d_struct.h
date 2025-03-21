@@ -6,7 +6,7 @@
 /*   By: akupesa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:23 by akupesa           #+#    #+#             */
-/*   Updated: 2025/02/10 15:39:25 by akupesa          ###   ########.fr       */
+/*   Updated: 2025/03/21 10:53:33 by akupesa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ typedef struct s_cub
 	t_cardial	card;
 	t_map		map;
 	void		*mlx;
+        void            *wall;
+        void            *floor;
 	void		*window;
 	t_player	*player;
 }			t_cub;
