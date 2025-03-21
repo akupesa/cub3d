@@ -70,11 +70,11 @@ void		get_map_matrix(t_cub *cub, const char *file_name)
 
 	i = 1;
 	buffer = NULL;
-	fullmap = NULL;
+        fullmap = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		simple_free(cub, "Error!\nInvalid Path or File Not Found.\n", 2);
-	while (i > 0)
+        while (i > 0)
 	{
 		buffer = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 		i = read(fd, buffer, BUFFER_SIZE);
@@ -90,7 +90,7 @@ void		get_map_matrix(t_cub *cub, const char *file_name)
 int	load_map(t_cub *cub, const char *file_name)
 {
 	int	i;
-
+        
 	get_map_matrix(cub, file_name);
 	cub->map.height = ft_getmapsize(cub, false);
 	cub->map.width = ft_getmapsize(cub, true);

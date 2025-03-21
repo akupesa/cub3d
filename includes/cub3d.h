@@ -51,14 +51,14 @@
 
 int		free_all(t_cub *cub, int fd);
 int		is_there_two_n(t_cub *cub);
-int		player_validator(t_cub *cub);
+bool		player_validator(t_cub *cub);
 int		keys_handler(int keycode, t_cub *cub);
 int		map_validator(t_cub *cub);
 int		load_map(t_cub *cub, const char *file_name);
 
 char		**map_copy(t_cub *cub);
 char		*get_next_line(int fd);
-char		chars_validator(char c);
+bool		chars_validator(char c);
 
 void		hook(t_cub *cub);
 void		destroy_items(t_cub *cub);

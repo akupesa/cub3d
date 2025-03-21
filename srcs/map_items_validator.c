@@ -12,12 +12,12 @@
 
 #include "../includes/cub3d.h"
 
-char	chars_validator(char c)
+bool	chars_validator(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' || c == ' ');
 }
 
-int	player_validator(t_cub *cub)
+bool	player_validator(t_cub *cub)
 {
 	int		x;
 	int		y;
@@ -32,6 +32,7 @@ int	player_validator(t_cub *cub)
 			if (cub->map.matrix[y][x] == 'N')
 				player_counter++;
 	}
+        printf("%d\n", player_counter);
 	if (player_counter != 1)
 		return (false);
 	return (true);

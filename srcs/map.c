@@ -41,7 +41,7 @@ int	map_validator(t_cub *cub)
 	int	x;
 	int	y;
 
-	if (player_validator(cub))
+	if (!player_validator(cub))
 	{
 		simple_free(cub, "Error!\nInvalid number of player.\n", 2);
 		return (true);
@@ -52,7 +52,8 @@ int	map_validator(t_cub *cub)
 		x = -1;
 		while (++x < cub->map.width)
 		{
-			if (!chars_validator(cub->map.matrix[y][x]))
+                        printf("%d\n", x);
+                        if (!chars_validator(cub->map.matrix[y][x]) && cub->map.matrix[y][x] != '\0')
 			{
 				simple_free(cub, "Error!\nMap contains invalid characters.\n", 2);
 				return (true);
