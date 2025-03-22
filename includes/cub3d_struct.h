@@ -60,12 +60,6 @@ typedef struct s_cardial
 	int			WE;
 }			t_cardial;
 
-typedef struct s_hash
-{
-	t_quad		square;
-//	t_list		list;
-}			t_hash;
-
 typedef struct s_map
 {
 	int			height;
@@ -78,12 +72,14 @@ typedef struct s_map
 typedef struct s_cub
 {
 	int			F;
+        int                     C;
 	t_cardial	card;
 	t_map		map;
 	void		*mlx;
         void            *wall;
         void            *floor;
 	void		*window;
+        void            *ceiling;
 	t_player	*player;
 }			t_cub;
 

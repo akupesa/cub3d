@@ -12,4 +12,31 @@
 
 #include "../includes/cub3d.h"
 
+unsigned int    ft_hash(const char *key)
+{
+        unsigned int    hash;
 
+        while (*key)
+        {
+                hash = (hash * 31) + *key;
+                key++;
+        }
+        return (hash % TABLE_SIZE);
+}
+
+t_hashtable     *init_hashtable(void)
+{
+        int             i;
+        t_hashtable     hash;
+
+        hash = malloc(sizeof(t_hashtable));
+        if (hash == NULL)
+                return (NULL);
+        i = 0;
+        while (i < TABLE_SIZE)
+        {
+                hash->table[i];
+                i++;
+        }
+        return (hash);
+}

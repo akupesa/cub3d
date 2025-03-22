@@ -31,7 +31,10 @@ int	main(int ac, char **av)
 	cub->window = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
 	if (cub->window == NULL)
 		simple_free(cub, "Error!\nWindow creation failed.\n", 2);
-	hook(cub);
+	cub->F = 0x008FBC8F;
+        cub->C = 0x009400D3;
+        put_texture(cub);
+        hook(cub);
 	mlx_loop(cub->mlx);
 	free(cub);
 	return (0);

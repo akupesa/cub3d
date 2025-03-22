@@ -10,27 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d"
+#include "../includes/cub3d.h"
 
-int     put_texture(t_cub *cub)
+static void     put_pixel(char *buffer, int x, int y, int color, int line_length)
+{
+        int     offset;
+
+        offset = (y * line_length) + (x * 4);
+        *(unsigned int *)(buffer + offset) = color;
+}
+
+void     put_texture(t_cub *cub)
 {
         int     x;
         int     y;
+        int     half_height;
+        int     line_length;
+        int     bpp;
+        int     endian;
+        char    *buffer;
 
-        x = 0;
-        y = 0;
-        if (cub->map[y][x] == '0')
-                mlx_put_image_to_window(cub->mlx, cub->window,
-                                cub->floor, );
-        else if (cub->[y][x] == '1')
-                mlx_put_image_to_window(cub->mlx, cub->window,
-                                cub->wall, );
-        else
-                return (1);
-        return (0);
-}
-
-int     game_render(t_cub *cub)
-{
-        
+        cub->floor = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+        buffer = mlx_get_data_addr(cub->floor, &bpp, &line_length, &endian);
+        half_height = HEIGHT / 2;
+        y = -1;
+        while (++y < half_height)
+        {
+                x = -1;
+                while (++x < WIDTH)
+                {
+                        put_pixel(buffer, x, y, cub->C, line_length);
+                }
+        }
+        while (y < HEIGHT)
+        {
+                x = -1;
+                while (++x < WIDTH)
+                        put_pixel(buffer, x, y, cub->F, line_length);
+                y++;
+        }
+        mlx_put_image_to_window(cub->mlx, cub->window, cub->floor, 0, 0);
 }

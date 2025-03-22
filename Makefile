@@ -21,9 +21,10 @@ SRCS = 	srcs/all_frees.c \
 	srcs/keys_handlers.c \
 	srcs/loop.c \
 	srcs/main.c \
+	srcs/map.c \
 	srcs/map_items_validator.c \
 	srcs/map_reader.c \
-	srcs/map.c \
+	srcs/textures_to_window.c \
 	srcs/validator_args.c
 
 OBJ = $(SRCS:.c=.o)

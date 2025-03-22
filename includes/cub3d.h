@@ -29,11 +29,11 @@
 # include <sys/time.h>
 # include <sys/types.h>
 
+# include "hash.h"
 # include "cub3d_struct.h"
 # include "../minilibx-linux/mlx.h"
 
 # define BUFFER_SIZE 42
-# define TABLE_SIZE 53
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -51,16 +51,18 @@
 
 int		free_all(t_cub *cub, int fd);
 int		is_there_two_n(t_cub *cub);
-bool		player_validator(t_cub *cub);
 int		keys_handler(int keycode, t_cub *cub);
 int		map_validator(t_cub *cub);
 int		load_map(t_cub *cub, const char *file_name);
 
-char		**map_copy(t_cub *cub);
-char		*get_next_line(int fd);
+bool		player_validator(t_cub *cub);
 bool		chars_validator(char c);
 
+char		**map_copy(t_cub *cub);
+char		*get_next_line(int fd);
+
 void		hook(t_cub *cub);
+void            put_texture(t_cub *cub);
 void		destroy_items(t_cub *cub);
 void		simple_free(t_cub *cub, char *str, int fd);
 void		is_map_empty(t_cub *cub, int fd, char *fullmap);
