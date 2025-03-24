@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_validator.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akupesa <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:39:49 by akupesa           #+#    #+#             */
-/*   Updated: 2025/02/26 15:59:56 by akupesa          ###   ########.fr       */
+/*   Updated: 2025/03/24 09:43:49 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	flood_fill(t_cub *cub, t_coords vector)
 {
-	if (vector.x < 0 || vector.x >= cub->map.width || vector.y < 0 || vector.y >= cub->map.height)
+	if (vector.x < 0 || vector.x >= cub->map.width || vector.y < 0
+		|| vector.y >= cub->map.height)
 		return ;
 	if (cub->map.matrix_cpy[vector.y][vector.x] == 'X')
 		return ;
@@ -33,7 +34,8 @@ t_coords	get_coords(t_cub *cub)
 	int	j;
 
 	i = -1;
-	while (cub != NULL && cub->map.matrix != NULL && cub->map.matrix[++i] != NULL)
+	while (cub != NULL && cub->map.matrix != NULL
+		&& cub->map.matrix[++i] != NULL)
 	{
 		j = -1;
 		while (cub->map.matrix[i][++j] != '\0')
@@ -42,7 +44,6 @@ t_coords	get_coords(t_cub *cub)
 	}
 	return ((t_coords){0, 0});
 }
-
 
 void	verify_path(t_cub *cub)
 {

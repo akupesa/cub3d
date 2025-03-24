@@ -14,6 +14,6 @@
 
 void	hook(t_cub *cub)
 {
-	mlx_hook(cub->window, 2, 1l << 0, keys_handler, cub);
-	mlx_hook(cub->window, 17, 0, free_all, cub);
+	mlx_hook(cub->mlx.window, 2, 1l << 0, keys_handler, cub);
+	mlx_hook(cub->mlx.window, 17, 0, free_all, cub);
 }

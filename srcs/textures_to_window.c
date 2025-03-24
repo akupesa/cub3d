@@ -3,51 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   textures_to_window.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akupesa <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 10:04:55 by akupesa           #+#    #+#             */
-/*   Updated: 2025/03/21 11:02:36 by akupesa          ###   ########.fr       */
+/*   Updated: 2025/03/24 09:45:17 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void     put_pixel(char *buffer, int x, int y, int color, int line_length)
+static void	put_pixel(t_cub *cub, int x, int y, int color)
 {
-        int     offset;
+	int	offset;
 
-        offset = (y * line_length) + (x * 4);
-        *(unsigned int *)(buffer + offset) = color;
+	offset = (y * cub->background.llen) + (x * (cub->background.bpp / 8));
+	*(unsigned int *)(cub->background.addr + offset) = color;
 }
 
-void     put_texture(t_cub *cub)
+void	render_background(t_cub *cub)
 {
-        int     x;
-        int     y;
-        int     half_height;
-        int     line_length;
-        int     bpp;
-        int     endian;
-        char    *buffer;
+	int	x;
+	int	y;
 
-        cub->floor = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
-        buffer = mlx_get_data_addr(cub->floor, &bpp, &line_length, &endian);
-        half_height = HEIGHT / 2;
-        y = -1;
-        while (++y < half_height)
-        {
-                x = -1;
-                while (++x < WIDTH)
-                {
-                        put_pixel(buffer, x, y, cub->C, line_length);
-                }
-        }
-        while (y < HEIGHT)
-        {
-                x = -1;
-                while (++x < WIDTH)
-                        put_pixel(buffer, x, y, cub->F, line_length);
-                y++;
-        }
-        mlx_put_image_to_window(cub->mlx, cub->window, cub->floor, 0, 0);
+	cub->background.ptr = mlx_new_image(cub->mlx.ptr, WIDTH, HEIGHT);
+	cub->background.addr = mlx_get_data_addr(cub->background.ptr,
+			&cub->background.bpp, &cub->background.llen, &cub->background.end);
+	y = 0;
+	while (y < HEIGHT / 2)
+	{
+		x = -1;
+		while (++x < WIDTH)
+			put_pixel(cub, x, y, cub->ceiling.color);
+		y++;
+	}
+	while (y < HEIGHT)
+	{
+		x = -1;
+		while (++x < WIDTH)
+			put_pixel(cub, x, y, cub->floor.color);
+		y++;
+	}
 }

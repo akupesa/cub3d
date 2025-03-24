@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_items_validator.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akupesa <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:05:27 by akupesa           #+#    #+#             */
-/*   Updated: 2025/02/27 10:05:30 by akupesa          ###   ########.fr       */
+/*   Updated: 2025/03/24 09:44:52 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 bool	chars_validator(char c)
 {
-	return (c == '0' || c == '1' || c == 'N' || c == ' ');
+	return (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S' || c == 'E'
+		|| c == 'W');
 }
 
 bool	player_validator(t_cub *cub)
 {
-	int		x;
-	int		y;
-	int		player_counter;
+	int	x;
+	int	y;
+	int	player_counter;
 
 	y = -1;
 	player_counter = 0;
@@ -32,7 +33,7 @@ bool	player_validator(t_cub *cub)
 			if (cub->map.matrix[y][x] == 'N')
 				player_counter++;
 	}
-        printf("%d\n", player_counter);
+	printf("%d\n", player_counter);
 	if (player_counter != 1)
 		return (false);
 	return (true);

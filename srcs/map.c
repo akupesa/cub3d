@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akupesa <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:16:35 by akupesa           #+#    #+#             */
-/*   Updated: 2025/02/12 12:16:36 by akupesa          ###   ########.fr       */
+/*   Updated: 2025/03/24 09:45:12 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**map_copy(t_cub *cub)
 	copy[cub->map.height] = NULL;
 	while (i < cub->map.height)
 	{
-		copy[i] = (char *)ft_calloc(sizeof(char ), (cub->map.width + 1));
+		copy[i] = (char *)ft_calloc(sizeof(char), (cub->map.width + 1));
 		j = 0;
 		while (j < cub->map.width)
 		{
@@ -52,10 +52,12 @@ int	map_validator(t_cub *cub)
 		x = -1;
 		while (++x < cub->map.width)
 		{
-                        printf("%d\n", x);
-                        if (!chars_validator(cub->map.matrix[y][x]) && cub->map.matrix[y][x] != '\0')
+			printf("%d\n", x);
+			if (!chars_validator(cub->map.matrix[y][x])
+				&& cub->map.matrix[y][x] != '\0')
 			{
-				simple_free(cub, "Error!\nMap contains invalid characters.\n", 2);
+				simple_free(cub, "Error!\nMap contains invalid characters.\n",
+					2);
 				return (true);
 			}
 		}

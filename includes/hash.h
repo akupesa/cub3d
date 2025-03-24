@@ -3,29 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   hash.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akupesa <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 10:40:03 by akupesa           #+#    #+#             */
-/*   Updated: 2025/03/22 10:40:06 by akupesa          ###   ########.fr       */
+/*   Updated: 2025/03/24 09:34:02 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HASH_H
 # define HASH_H
 
-# define TABLE_SIZE 53
+# include <math.h>
+# define FLOOR 0
+# define WALL 1
+# define PLAYER 2
+# define ENEMY 3
+# define DOOR 4
+# define OBSTACLE 5
+
+typedef struct s_quad
+{
+	float_t				x;
+	float_t				y;
+	float_t				width;
+	float_t				height;
+}						t_quad;
 
 typedef struct s_entrance
 {
-        char                    *key; // "NO", "SO", "WE", "EA"
-        void                    *value; // ponteiro genérico para texturas, cores, etc...
-        struct s_entrance       *next; //encadeamento para lidar com colisões
-}                               t_entrance;
+	void				*value;
+	int					datatype;
+	int					hashvalue;
+	struct s_entrance	*next;
+}						t_entrance;
 
 typedef struct s_hashtable
 {
-        t_entrance      *table[TABLE_SIZE]; //array de listas para armazenar entradas
-}                               t_hastable;
-
+	t_entrance			**table;
+}						t_hashtable;
 
 #endif

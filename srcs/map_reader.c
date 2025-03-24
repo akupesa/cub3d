@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akupesa <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:41:58 by akupesa           #+#    #+#             */
-/*   Updated: 2025/03/21 08:50:44 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/03/24 09:44:59 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@ char	*ft_strjoint(char *s1, char *s2)
 	char	*result;
 	int		i;
 	int		j;
-	size_t	total_len;
 
 	j = 0;
 	i = -1;
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
-	total_len = ft_strlen(s1) + ft_strlen(s2);
-	result = (char *)ft_calloc(total_len + 1, sizeof(char));
+	result = (char *)ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
 	if (result == NULL)
 		return (NULL);
 	while (s1 != NULL && s1[++i] != '\0')
@@ -42,9 +40,9 @@ char	*ft_strjoint(char *s1, char *s2)
 
 int	ft_getmapsize(t_cub *cub, bool axis_flag)
 {
-	int		i;
-	int		x;
-	int		y;
+	int	i;
+	int	x;
+	int	y;
 
 	y = 0;
 	x = 0;
@@ -61,7 +59,7 @@ int	ft_getmapsize(t_cub *cub, bool axis_flag)
 	return (y);
 }
 
-void		get_map_matrix(t_cub *cub, const char *file_name)
+void	get_map_matrix(t_cub *cub, const char *file_name)
 {
 	int		i;
 	int		fd;
@@ -70,27 +68,27 @@ void		get_map_matrix(t_cub *cub, const char *file_name)
 
 	i = 1;
 	buffer = NULL;
-        fullmap = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	fullmap = (char *)ft_calloc(1, 1);
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		simple_free(cub, "Error!\nInvalid Path or File Not Found.\n", 2);
-        while (i > 0)
+	while (i > 0)
 	{
 		buffer = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 		i = read(fd, buffer, BUFFER_SIZE);
 		fullmap = ft_strjoint(fullmap, buffer);
 	}
-        if (is_there_two_n(cub) == true)
-                simple_free(cub, "Error!\nMap contains more than one followed newline.\n", 2);
 	cub->map.matrix = ft_split(fullmap, '\n');
 	is_map_empty(cub, fd, fullmap);
+	if (fullmap != NULL)
+		free(fullmap);
 	close(fd);
 }
 
 int	load_map(t_cub *cub, const char *file_name)
 {
 	int	i;
-        
+
 	get_map_matrix(cub, file_name);
 	cub->map.height = ft_getmapsize(cub, false);
 	cub->map.width = ft_getmapsize(cub, true);
