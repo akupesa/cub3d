@@ -38,7 +38,7 @@ char	*ft_strjoint(char *s1, char *s2)
 	return (result);
 }
 
-int	ft_getmapsize(t_cub *cub, bool axis_flag)
+int	get_map_size(t_cub *cub, bool axis_flag)
 {
 	int	i;
 	int	x;
@@ -90,8 +90,8 @@ int	load_map(t_cub *cub, const char *file_name)
 	int	i;
 
 	get_map_matrix(cub, file_name);
-	cub->map.height = ft_getmapsize(cub, false);
-	cub->map.width = ft_getmapsize(cub, true);
+	cub->map.height = get_map_size(cub, false);
+	cub->map.width = get_map_size(cub, true);
 	i = -1;
 	while (++i < cub->map.height)
 		printf("%s\n", cub->map.matrix[i]);
