@@ -50,11 +50,10 @@ int	map_validator(t_cub *cub)
 	while (++y < cub->map.height)
 	{
 		x = -1;
-		while (++x < cub->map.width)
+		while (cub->map.matrix[y][++x] != '\0')
 		{
-			printf("%d\n", x);
-			if (!chars_validator(cub->map.matrix[y][x])
-				&& cub->map.matrix[y][x] != '\0')
+			if (cub->map.matrix[y][x] != '\0'
+				&& !chars_validator(cub->map.matrix[y][x]))
 			{
 				simple_free(cub, "Error!\nMap contains invalid characters.\n",
 					2);

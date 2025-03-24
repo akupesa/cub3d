@@ -34,6 +34,8 @@ int	main(int ac, char **av)
 	cub->floor.color = 0x008FBC8F;
 	cub->ceiling.color = 0x009400D3;
 	render_background(cub);
+	mlx_put_image_to_window(cub->mlx.ptr, cub->mlx.window,
+		cub->background.ptr, 0, 0);
 	hook(cub);
 	mlx_loop(cub->mlx.ptr);
 	free(cub);

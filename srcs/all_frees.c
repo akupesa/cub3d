@@ -33,6 +33,8 @@ static void	free_cub(t_cub *cub)
 {
 	if (cub == NULL)
 		return ;
+	if (cub->background.ptr != NULL)
+		mlx_destroy_image(cub->mlx.ptr, cub->background.ptr);
 	if (cub->map.matrix != NULL)
 		free_map(cub->map.matrix);
 	if (cub->map.matrix_cpy != NULL)

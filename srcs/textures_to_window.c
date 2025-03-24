@@ -12,35 +12,35 @@
 
 #include "../includes/cub3d.h"
 
-static void	put_pixel(t_cub *cub, int x, int y, int color)
+static void	put_pixel(t_cub *cub, t_coords vec, int color)
 {
 	int	offset;
 
-	offset = (y * cub->background.llen) + (x * (cub->background.bpp / 8));
+	offset = (vec.y * cub->background.llen)
+		+ (vec.x * (cub->background.bpp / 8));
 	*(unsigned int *)(cub->background.addr + offset) = color;
 }
 
 void	render_background(t_cub *cub)
 {
-	int	x;
-	int	y;
+	t_coords	vec;
 
 	cub->background.ptr = mlx_new_image(cub->mlx.ptr, WIDTH, HEIGHT);
 	cub->background.addr = mlx_get_data_addr(cub->background.ptr,
 			&cub->background.bpp, &cub->background.llen, &cub->background.end);
-	y = 0;
-	while (y < HEIGHT / 2)
+	vec.y = 0;
+	while (vec.y < HEIGHT / 2)
 	{
-		x = -1;
-		while (++x < WIDTH)
-			put_pixel(cub, x, y, cub->ceiling.color);
-		y++;
+		vec.x = -1;
+		while (++vec.x < WIDTH)
+			put_pixel(cub, vec, cub->ceiling.color);
+		vec.y++;
 	}
-	while (y < HEIGHT)
+	while (vec.y < HEIGHT)
 	{
-		x = -1;
-		while (++x < WIDTH)
-			put_pixel(cub, x, y, cub->floor.color);
-		y++;
+		vec.x = -1;
+		while (++vec.x < WIDTH)
+			put_pixel(cub, vec, cub->floor.color);
+		vec.y++;
 	}
 }

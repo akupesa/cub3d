@@ -29,11 +29,10 @@ bool	player_validator(t_cub *cub)
 	while (++y < cub->map.height)
 	{
 		x = -1;
-		while (++x < cub->map.width)
+		while (cub->map.matrix[y][++x] != '\0')
 			if (cub->map.matrix[y][x] == 'N')
 				player_counter++;
 	}
-	printf("%d\n", player_counter);
 	if (player_counter != 1)
 		return (false);
 	return (true);
