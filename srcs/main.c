@@ -31,8 +31,8 @@ int	main(int ac, char **av)
 	cub->mlx.window = mlx_new_window(cub->mlx.ptr, WIDTH, HEIGHT, "cub3d");
 	if (cub->mlx.window == NULL)
 		simple_free(cub, "Error!\nWindow creation failed.\n", 2);
-	cub->floor.color = 0x008FBC8F;
-	cub->ceiling.color = 0x009400D3;
+	cub->floor.color = 0x00FFFAFA;
+	cub->ceiling.color = 0x00C0C0C0;
 	render_background(cub);
 	mlx_put_image_to_window(cub->mlx.ptr, cub->mlx.window,
 		cub->background.ptr, 0, 0);

@@ -14,12 +14,15 @@
 # define HASH_H
 
 # include <math.h>
+
 # define FLOOR 0
 # define WALL 1
 # define PLAYER 2
 # define ENEMY 3
 # define DOOR 4
 # define OBSTACLE 5
+
+# define TABLE_SIZE 51
 
 typedef struct s_quad
 {
@@ -32,8 +35,8 @@ typedef struct s_quad
 typedef struct s_entrance
 {
 	void				*value;
-	int					datatype;
-	int					hashvalue;
+	int					data_type;
+	int					hash_value;
 	struct s_entrance	*next;
 }						t_entrance;
 

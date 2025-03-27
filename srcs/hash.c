@@ -27,7 +27,7 @@ unsigned int	ft_hash(const char *key)
 t_hashtable	*init_hashtable(void)
 {
 	int			i;
-	t_hashtable	hash;
+	t_hashtable	hashtable;
 
 	hash = malloc(sizeof(t_hashtable));
 	if (hash == NULL)
