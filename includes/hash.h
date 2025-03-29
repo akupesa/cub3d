@@ -43,6 +43,7 @@ typedef struct s_entrance
 typedef struct s_hashtable
 {
 	t_entrance			**table;
+	double					size;
 }						t_hashtable;
 
 #endif

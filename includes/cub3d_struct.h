@@ -92,6 +92,7 @@ typedef struct s_player
 
 typedef struct s_cub
 {
+	t_hashtable			hashtable;
 	t_player			player;
 	t_cardial			card;
 	t_texture			floor;

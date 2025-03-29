@@ -17,6 +17,8 @@ CFLAGS = -Wall -Werror -Wextra
 SRCS = 	srcs/all_frees.c \
 	srcs/flood_fill_validator.c \
 	srcs/get_next_line.c \
+	srcs/hash.c \
+	srcs/hash_motion.c \
 	srcs/keys_handlers.c \
 	srcs/loop.c \
 	srcs/main.c \
