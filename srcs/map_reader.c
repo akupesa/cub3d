@@ -62,11 +62,27 @@ void	get_file_data(t_cub *cub, const char *file)
 {
 	int		i;
 
-	i = 0;
-	while (file[i] != '\0') {
-		i++;
+	i = -1;
+	while (file[++i] != '\0')
+	{
+		if (file[i] == ' ')
+			continue ;
+		else if (ft_strncmp(&file[i], "NO", 1) == 0)
+			continue ;
+		else if (ft_strncmp(&file[i], "SO", 1) == 0)
+			continue ;
+		else if (ft_strncmp(&file[i], "WE", 1) == 0)
+			continue ;
+		else if (ft_strncmp(&file[i], "EA", 1) == 0)
+			continue ;
+		else if (ft_strncmp(&file[i], "F", 0) == 0)
+			continue ;
+		else if (ft_strncmp(&file[i], "C", 0) == 0)
+			continue ;
+		else if (file[i] == '1' || file[i] == '0')
+			break ;
 	}
-	cub->map.matrix = ft_split(file, '\n');
+	cub->map.matrix = ft_split(&file[i], '\n');
 }
 
 void	get_full_map(t_cub *cub, const char *file_name)
