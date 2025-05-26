@@ -17,8 +17,6 @@ CFLAGS = -Wall -Werror -Wextra
 SRCS = 	srcs/all_frees.c \
 	srcs/flood_fill_validator.c \
 	srcs/get_next_line.c \
-	srcs/hash.c \
-	srcs/hash_motion.c \
 	srcs/keys_handlers.c \
 	srcs/loop.c \
 	srcs/main.c \
@@ -37,7 +35,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 MINILIBX_DIR = ./minilibx-linux
 MINILIBX = $(MINILIBX_DIR)/libmlx.a
 
-INCLUDES = -I./includes -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
+INCLUDES = -I./includes/cub3d.h -I./includes/cub3d_struct.h -I$(LIBFT_DIR)/libft.h -I$(MINILIBX_DIR)/mlx.h
 MLX_FLAGS = -L$(MINILIBX_DIR) -lmlx -lX11 -lXext -lm
 
 all: $(LIBFT) $(MINILIBX) $(NAME)
@@ -48,8 +46,11 @@ $(LIBFT):
 $(MINILIBX):
 	make -C $(MINILIBX_DIR)
 
-$(NAME): $(OBJ) $(LIBFT) $(MINILIBX)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJ) $(LIBFT) $(MLX_FLAGS)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MINILIBX) $(MLX_FLAGS) -o $(NAME)
+
+%.o: %.c $(INCLUDES)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	make -C $(LIBFT_DIR) clean

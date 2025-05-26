@@ -25,19 +25,14 @@ int	main(int ac, char **av)
 	cub->mlx.ptr = mlx_init();
 	if (cub->mlx.ptr == NULL)
 		simple_free(cub, "Error!\nMLX Initialization Failed.\n", 2);
-	load_map(cub, av[1]);
-	if (map_validator(cub))
-		return (1);
 	cub->mlx.window = mlx_new_window(cub->mlx.ptr, WIDTH, HEIGHT, "cub3d");
 	if (cub->mlx.window == NULL)
 		simple_free(cub, "Error!\nWindow creation failed.\n", 2);
-	cub->floor.color = 0x00FFFAFA;
-	cub->ceiling.color = 0x00C0C0C0;
+	load_map(cub, av[1]);
 	render_background(cub);
 	mlx_put_image_to_window(cub->mlx.ptr, cub->mlx.window,
 		cub->background.ptr, 0, 0);
 	hook(cub);
 	mlx_loop(cub->mlx.ptr);
-	free(cub);
-	return (0);
+	return (free_all(cub, 0));
 }

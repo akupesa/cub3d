@@ -35,31 +35,3 @@ char	**map_copy(t_cub *cub)
 	}
 	return (copy);
 }
-
-int	map_validator(t_cub *cub)
-{
-	int	x;
-	int	y;
-
-	if (!player_validator(cub))
-	{
-		simple_free(cub, "Error!\nInvalid number of player.\n", 2);
-		return (true);
-	}
-	y = -1;
-	while (++y < cub->map.height)
-	{
-		x = -1;
-		while (cub->map.matrix[y][++x] != '\0')
-		{
-			if (cub->map.matrix[y][x] != '\0'
-				&& !chars_validator(cub->map.matrix[y][x]))
-			{
-				simple_free(cub, "Error!\nMap contains invalid characters.\n",
-					2);
-				return (true);
-			}
-		}
-	}
-	return (false);
-}

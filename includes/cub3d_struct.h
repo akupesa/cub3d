@@ -14,7 +14,7 @@
 # define CUB3D_STRUCT_H
 
 # include "../libft/libft.h"
-# include "./hash.h"
+# include <math.h>
 
 typedef struct s_list	t_list;
 
@@ -66,11 +66,10 @@ typedef struct s_cardial
 
 typedef struct s_map
 {
-	t_hashtable			**map;
-	char				**matrix;
-	char				**matrix_cpy;
 	int					width;
 	int					height;
+	char				**matrix;
+	char				**matrix_cpy;
 }						t_map;
 
 typedef struct s_ray
@@ -92,16 +91,14 @@ typedef struct s_player
 
 typedef struct s_cub
 {
-	t_hashtable			hashtable;
 	t_player			player;
-	t_cardial			card;
 	t_texture			floor;
 	t_texture			ceiling;
+	t_cardial			texture;
 	t_img				background;
 	t_img				view;
 	t_map				map;
 	t_mlx				mlx;
-	void				*wall;
 }						t_cub;
 
 #endif

@@ -12,11 +12,10 @@
 
 #include "../includes/cub3d.h"
 
-void	is_map_empty(t_cub *cub, int fd, char *fullmap)
+void	is_map_empty(t_cub *cub, char *fullmap)
 {
 	if (is_there_two_n(fullmap) == true)
 	{
-		close(fd);
 		if (fullmap != NULL)
 			free(fullmap);
 		simple_free(cub,
@@ -25,7 +24,6 @@ void	is_map_empty(t_cub *cub, int fd, char *fullmap)
 	if (cub->map.matrix == NULL || (cub->map.height == 1
 			&& cub->map.matrix[0] == NULL))
 	{
-		close(fd);
 		if (fullmap != NULL)
 			free(fullmap);
 		simple_free(cub, "Fatal Error!\nFailure on Map Allocation\n", 1);
@@ -51,6 +49,34 @@ bool	is_there_two_n(char *fullmap)
 		if (count > 1 && fullmap[i] != '\n')
 			return (true);
 		count = 0;
+	}
+	return (false);
+}
+
+int	map_validator(t_cub *cub)
+{
+	int	x;
+	int	y;
+
+	if (!player_validator(cub))
+	{
+		simple_free(cub, "Error!\nInvalid number of player.\n", 2);
+		return (true);
+	}
+	y = -1;
+	while (++y < cub->map.height)
+	{
+		x = -1;
+		while (cub->map.matrix[y][++x] != '\0')
+		{
+			if (cub->map.matrix[y][x] != '\0'
+				&& !chars_validator(cub->map.matrix[y][x]))
+			{
+				simple_free(cub, "Error!\nMap contains invalid characters.\n",
+					2);
+				return (true);
+			}
+		}
 	}
 	return (false);
 }

@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-char	*ft_strjoint(char *s1, char *s2)
+char	*ft_strjoint(char *s1, const char *s2)
 {
 	char	*result;
 	int		i;
@@ -25,16 +25,15 @@ char	*ft_strjoint(char *s1, char *s2)
 	result = (char *)ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
 	if (result == NULL)
 		return (NULL);
+	if (s1 == NULL)
+		i++;
 	while (s1 != NULL && s1[++i] != '\0')
-		result[i] = ((unsigned char *)s1)[i];
+		result[i] = s1[i];
 	while (s2 != NULL && s2[j] != '\0')
-		result[i++] = ((unsigned char *)s2)[j++];
+		result[i++] = s2[j++];
 	if (s1 != NULL)
 		free(s1);
 	s1 = NULL;
-	if (s2 != NULL)
-		free(s2);
-	s2 = NULL;
 	return (result);
 }
 
@@ -59,41 +58,53 @@ int	get_map_size(t_cub *cub, bool axis_flag)
 	return (y);
 }
 
-void	get_map_matrix(t_cub *cub, const char *file_name)
+void	get_file_data(t_cub *cub, const char *file)
+{
+	int		i;
+
+	i = 0;
+	while (file[i] != '\0') {
+		i++;
+	}
+	cub->map.matrix = ft_split(file, '\n');
+}
+
+void	get_full_map(t_cub *cub, const char *file_name)
 {
 	int		i;
 	int		fd;
-	char	*buffer;
-	char	*fullmap;
+	char	*file;
+	char	buffer[BUFFER_SIZE + 1];
 
 	i = 1;
-	buffer = NULL;
-	fullmap = (char *)ft_calloc(1, 1);
+	file = NULL;
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		simple_free(cub, "Error!\nInvalid Path or File Not Found.\n", 2);
 	while (i > 0)
 	{
-		buffer = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		ft_bzero(buffer, BUFFER_SIZE + 1);
 		i = read(fd, buffer, BUFFER_SIZE);
-		fullmap = ft_strjoint(fullmap, buffer);
+		file = ft_strjoint(file, buffer);
 	}
-	cub->map.matrix = ft_split(fullmap, '\n');
-	is_map_empty(cub, fd, fullmap);
-	if (fullmap != NULL)
-		free(fullmap);
 	close(fd);
+	get_file_data(cub, file);
+	//is_map_empty(cub, file);
+	if (file != NULL)
+		free(file);
 }
 
 int	load_map(t_cub *cub, const char *file_name)
 {
 	int	i;
 
-	get_map_matrix(cub, file_name);
-	cub->map.height = get_map_size(cub, false);
-	cub->map.width = get_map_size(cub, true);
+	get_full_map(cub, file_name);
 	i = -1;
 	while (++i < cub->map.height)
 		printf("%s\n", cub->map.matrix[i]);
+	//if (map_validator(cub))
+		//simple_free(cub, "Invalid map!", 2);
+	cub->floor.color = 0x555511;
+	cub->ceiling.color = 0x5599f1;
 	return (1);
 }
