@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include <stdio.h>
 
 char	*ft_strjoint(char *s1, char *s2)
 {
@@ -37,48 +38,98 @@ char	*ft_strjoint(char *s1, char *s2)
 	return (result);
 }
 
-int	get_map_size(t_cub *cub, bool axis_flag)
+void	get_texture(t_cub *cub, t_texture *rsc, char *file, int *i)
 {
-	int	i;
-	int	x;
-	int	y;
+	int	len;
 
-	y = 0;
-	x = 0;
-	i = 0;
-	while (cub->map.matrix[y] != NULL)
+	while (file[*i] != '\0' && file[*i] != ' ')
+		(*i)++;
+	while (file[*i] != '\0' && file[*i] == ' ')
+		(*i)++;
+	len = *i;
+	while (file[len] != '\0' && file[len] != ' ' && file[len] != '\n')
+		len++;
+	rsc->path = (char *)ft_calloc(len, sizeof(char));
+	len = 0;
+	while (file[*i] != '\0' && file[*i] != ' ' && file[*i] != '\n')
+		rsc->path[len++] = file[(*i)++];
+	if (rsc->img.ptr != NULL)
 	{
-		i = ft_strlen(cub->map.matrix[y]);
-		if (i > x)
-			x = i;
-		y++;
+		free(file);
+		free_and_print(cub, "Repetead texture source\n", 2);
 	}
-	if (axis_flag == true)
-		return (x);
-	return (y);
+	rsc->img.ptr = mlx_xpm_file_to_image(cub->mlx.ptr,
+			rsc->path, &rsc->width, &rsc->height);
+	if (rsc->img.ptr == NULL)
+	{
+		free(file);
+		free_and_print(cub, "No texture source file found!\n", 2);
+	}
 }
 
-void	get_file_data(t_cub *cub, const char *file)
+int	get_color_number(t_cub *cub, char *file, int *i)
+{
+	int		j;
+	int		num;
+
+	j = 0;
+	num = 0;
+	while (file[*i] != '\0' && file[*i] != '\n' && file[*i] != ',')
+	{
+		if (j++ > 3 || !ft_isdigit(file[*i]))
+		{
+			printf("hi!\n");
+			printf("%d\n", num);
+			free(file);
+			free_and_print(cub, "Repetead Color\n", 2);
+		}
+		num = (num * 10) + (file[(*i)++] - '0');
+	}
+	if (num > 255)
+	{
+		free(file);
+		free_and_print(cub, "Wrong color format!\n", 2);
+	}
+	return (num);
+}
+
+void	get_color(t_cub *cub, t_texture *rsc, char *file, int *i)
+{
+	int		j;
+	int		num;
+
+	j = -1;
+	num = 0;
+	while (file[*i] != '\0' && file[*i] != ' ')
+		(*i)++;
+	while (++j < 3)
+		num = (num << 8) + get_color_number(cub, file, i);
+	rsc->color = num;
+	//if (rsc->color != -1)
+		//free_and_print(cub, "Repetead Resource\n", 2);
+}
+
+void	get_file_data(t_cub *cub, char *file)
 {
 	int		i;
 
 	i = -1;
 	while (file[++i] != '\0')
 	{
-		if (file[i] == ' ')
+		if (file[i] == ' ' || file[i] == '\n')
 			continue ;
-		else if (ft_strncmp(&file[i], "NO", 1) == 0)
-			continue ;
-		else if (ft_strncmp(&file[i], "SO", 1) == 0)
-			continue ;
-		else if (ft_strncmp(&file[i], "WE", 1) == 0)
-			continue ;
-		else if (ft_strncmp(&file[i], "EA", 1) == 0)
-			continue ;
-		else if (ft_strncmp(&file[i], "F", 0) == 0)
-			continue ;
-		else if (ft_strncmp(&file[i], "C", 0) == 0)
-			continue ;
+		else if (ft_strncmp(&file[i], "NO", 2) == 0)
+			get_texture(cub, &cub->texture.north, file, &i);
+		else if (ft_strncmp(&file[i], "SO", 2) == 0)
+			get_texture(cub, &cub->texture.south, file, &i);
+		else if (ft_strncmp(&file[i], "WE", 2) == 0)
+			get_texture(cub, &cub->texture.west, file, &i);
+		else if (ft_strncmp(&file[i], "EA", 2) == 0)
+			get_texture(cub, &cub->texture.east, file, &i);
+		else if (ft_strncmp(&file[i], "F", 1) == 0)
+			get_color(cub, &cub->floor, file, &i);
+		else if (ft_strncmp(&file[i], "C", 1) == 0)
+			get_color(cub, &cub->ceiling, file, &i);
 		else if (file[i] == '1' || file[i] == '0')
 			break ;
 	}
@@ -104,7 +155,8 @@ void	get_full_map(t_cub *cub, const char *file_name)
 		file = ft_strjoint(file, buffer);
 	}
 	close(fd);
-	get_file_data(cub, file);
+	if (file != NULL)
+		get_file_data(cub, file);
 	//is_map_empty(cub, file);
 	if (file != NULL)
 		free(file);
@@ -120,7 +172,7 @@ int	load_map(t_cub *cub, const char *file_name)
 		printf("%s\n", cub->map.matrix[i]);
 	//if (map_validator(cub))
 		//free_and_print(cub, "Invalid map!", 2);
-	cub->floor.color = 0x555511;
-	cub->ceiling.color = 0x5599f1;
+	//cub->floor.color = 0x555511;
+	//cub->ceiling.color = 0x5599f1;
 	return (1);
 }

@@ -12,12 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-int	ft_exit(int __status)
-{
-	exit(__status);
-	return (__status);
-}
-
 void	free_map(char **map)
 {
 	int	i;
@@ -29,7 +23,7 @@ void	free_map(char **map)
 		free(map);
 }
 
-static void free_textures(t_cub *cub)
+static void	free_textures(t_cub *cub)
 {
 	if (cub->texture.north.path != NULL)
 		free(cub->texture.north.path);
@@ -82,5 +76,6 @@ void	free_and_print(t_cub *cub, char *str, int fd)
 int	free_all(t_cub *cub, int fd)
 {
 	free_cub(cub);
-	return (ft_exit(fd));
+	exit(fd);
+	return (fd);
 }

@@ -18,13 +18,13 @@ int	main(int ac, char **av)
 
 	cub = NULL;
 	if (ac != 2)
-		free_and_print(cub, "Error!\nFew or Many Arguments.\n", 2);
+		free_and_print(cub, "Error!\nFew or many arguments.\n", 2);
 	cub = ft_calloc(1, sizeof(t_cub));
 	if (cub == NULL)
-		free_and_print(cub, "Error!\nFailed on Main Struct Allocation.\n", 2);
+		free_and_print(cub, "Error!\nFailed on main struct allocation.\n", 2);
 	cub->mlx.ptr = mlx_init();
 	if (cub->mlx.ptr == NULL)
-		free_and_print(cub, "Error!\nMLX Initialization Failed.\n", 2);
+		free_and_print(cub, "Error!\nMLX initialization failed.\n", 2);
 	cub->mlx.window = mlx_new_window(cub->mlx.ptr, WIDTH, HEIGHT, "cub3d");
 	if (cub->mlx.window == NULL)
 		free_and_print(cub, "Error!\nWindow creation failed.\n", 2);

@@ -34,8 +34,8 @@ typedef struct s_mlx
 {
 	void				*ptr;
 	void				*window;
-	unsigned int		width;
-	unsigned int		height;
+	int					width;
+	int					height;
 }						t_mlx;
 
 typedef struct s_img
@@ -52,8 +52,8 @@ typedef struct s_texture
 	t_img				img;
 	int					color;
 	char				*path;
-	unsigned int		width;
-	unsigned int		height;
+	int					width;
+	int					height;
 }						t_texture;
 
 typedef struct s_cardial
