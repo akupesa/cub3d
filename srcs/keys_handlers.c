@@ -79,5 +79,6 @@ int	keys_handler(int keycode, t_cub *cub)
 		key_handler_down(cub);
 	else
 		return (true);
+	printf("%d ", cub->player.moves);
 	return (false);
 }

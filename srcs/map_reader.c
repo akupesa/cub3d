@@ -12,11 +12,11 @@
 
 #include "../includes/cub3d.h"
 
-char	*ft_strjoint(char *s1, const char *s2)
+char	*ft_strjoint(char *s1, char *s2)
 {
-	char	*result;
 	int		i;
 	int		j;
+	char	*result;
 
 	j = 0;
 	i = -1;
@@ -96,7 +96,7 @@ void	get_full_map(t_cub *cub, const char *file_name)
 	file = NULL;
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		simple_free(cub, "Error!\nInvalid Path or File Not Found.\n", 2);
+		free_and_print(cub, "Error!\nInvalid Path or File Not Found.\n", 2);
 	while (i > 0)
 	{
 		ft_bzero(buffer, BUFFER_SIZE + 1);
@@ -119,7 +119,7 @@ int	load_map(t_cub *cub, const char *file_name)
 	while (++i < cub->map.height)
 		printf("%s\n", cub->map.matrix[i]);
 	//if (map_validator(cub))
-		//simple_free(cub, "Invalid map!", 2);
+		//free_and_print(cub, "Invalid map!", 2);
 	cub->floor.color = 0x555511;
 	cub->ceiling.color = 0x5599f1;
 	return (1);

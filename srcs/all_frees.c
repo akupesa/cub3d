@@ -71,7 +71,7 @@ static void	free_cub(t_cub *cub)
 	free(cub);
 }
 
-void	simple_free(t_cub *cub, char *str, int fd)
+void	free_and_print(t_cub *cub, char *str, int fd)
 {
 	if (str != NULL)
 		ft_putstr_fd(str, 2);

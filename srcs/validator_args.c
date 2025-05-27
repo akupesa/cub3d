@@ -24,7 +24,7 @@ int	extension_validator(t_cub *cub, char *file_name)
 	}
 	else
 	{
-		simple_free(cub, "Error\nInvalid file extension.\n", 2);
+		free_and_print(cub, "Error\nInvalid file extension.\n", 2);
 		return (0);
 	}
 }

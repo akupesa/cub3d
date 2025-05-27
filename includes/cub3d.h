@@ -62,7 +62,7 @@ char		*get_next_line(int fd);
 void		hook(t_cub *cub);
 void		destroy_items(t_cub *cub);
 void		render_background(t_cub *cub);
-void		simple_free(t_cub *cub, char *str, int fd);
+void		free_and_print(t_cub *cub, char *str, int fd);
 void		is_map_empty(t_cub *cub, char *fullmap);
 
 t_coords	get_coords(t_cub *cub);

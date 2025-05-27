@@ -18,16 +18,16 @@ int	main(int ac, char **av)
 
 	cub = NULL;
 	if (ac != 2)
-		simple_free(cub, "Error!\nFew or Many Arguments.\n", 2);
+		free_and_print(cub, "Error!\nFew or Many Arguments.\n", 2);
 	cub = ft_calloc(1, sizeof(t_cub));
 	if (cub == NULL)
-		simple_free(cub, "Error!\nFailed on Main Struct Allocation.\n", 2);
+		free_and_print(cub, "Error!\nFailed on Main Struct Allocation.\n", 2);
 	cub->mlx.ptr = mlx_init();
 	if (cub->mlx.ptr == NULL)
-		simple_free(cub, "Error!\nMLX Initialization Failed.\n", 2);
+		free_and_print(cub, "Error!\nMLX Initialization Failed.\n", 2);
 	cub->mlx.window = mlx_new_window(cub->mlx.ptr, WIDTH, HEIGHT, "cub3d");
 	if (cub->mlx.window == NULL)
-		simple_free(cub, "Error!\nWindow creation failed.\n", 2);
+		free_and_print(cub, "Error!\nWindow creation failed.\n", 2);
 	load_map(cub, av[1]);
 	render_background(cub);
 	mlx_put_image_to_window(cub->mlx.ptr, cub->mlx.window,

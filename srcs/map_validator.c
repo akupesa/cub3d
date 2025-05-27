@@ -18,7 +18,7 @@ void	is_map_empty(t_cub *cub, char *fullmap)
 	{
 		if (fullmap != NULL)
 			free(fullmap);
-		simple_free(cub,
+		free_and_print(cub,
 			"Error!\nMap contains more than one followed newline.\n", 2);
 	}
 	if (cub->map.matrix == NULL || (cub->map.height == 1
@@ -26,7 +26,7 @@ void	is_map_empty(t_cub *cub, char *fullmap)
 	{
 		if (fullmap != NULL)
 			free(fullmap);
-		simple_free(cub, "Fatal Error!\nFailure on Map Allocation\n", 1);
+		free_and_print(cub, "Fatal Error!\nFailure on Map Allocation\n", 1);
 	}
 }
 
@@ -60,7 +60,7 @@ int	map_validator(t_cub *cub)
 
 	if (!player_validator(cub))
 	{
-		simple_free(cub, "Error!\nInvalid number of player.\n", 2);
+		free_and_print(cub, "Error!\nInvalid number of player.\n", 2);
 		return (true);
 	}
 	y = -1;
@@ -72,7 +72,7 @@ int	map_validator(t_cub *cub)
 			if (cub->map.matrix[y][x] != '\0'
 				&& !chars_validator(cub->map.matrix[y][x]))
 			{
-				simple_free(cub, "Error!\nMap contains invalid characters.\n",
+				free_and_print(cub, "Error!\nMap contains invalid characters.\n",
 					2);
 				return (true);
 			}
