@@ -67,7 +67,10 @@ void	key_handler_down(t_cub *cub)
 int	keys_handler(int keycode, t_cub *cub)
 {
 	if (keycode == ESC)
+	{
+		mlx_loop_end(cub->mlx.ptr);
 		free_all(cub, 0);
+	}
 	cub->player.coords = get_coords(cub);
 	if (keycode == MLX_A)
 		key_handler_left(cub);

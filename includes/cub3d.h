@@ -47,24 +47,30 @@
 // # define DOWN_KEY 65364
 # define RIGHT_KEY 65363
 
-int			map_validator(t_cub *cub);
-int			free_all(t_cub *cub, int fd);
-int			keys_handler(int keycode, t_cub *cub);
-int			load_map(t_cub *cub, const char *file_name);
+// Map reading
+void		load_map(t_cub *cub, const char *file_name);
+void		get_file(t_cub *cub, const char *file_name);
 
-bool		chars_validator(char c);
+// Map validation
+void		is_map_empty(t_cub *cub, int i);
+void		map_validator(t_cub *cub);
 bool		player_validator(t_cub *cub);
-bool		is_there_two_n(char *fullmap);
+bool		chars_validator(char c);
+bool		is_there_two_n(t_cub *cub, int i);
 
-char		**map_copy(t_cub *cub);
-char		*get_next_line(int fd);
-
-void		hook(t_cub *cub);
-void		destroy_items(t_cub *cub);
-void		render_background(t_cub *cub);
-void		free_and_print(t_cub *cub, char *str, int fd);
-void		is_map_empty(t_cub *cub, char *fullmap);
-
+// Utils
+char		*ft_strjoint(char *s1, char *s2);
 t_coords	get_coords(t_cub *cub);
+
+// Main loop
+void		hook(t_cub *cub);
+int			keys_handler(int keycode, t_cub *cub);
+
+// Render
+void		render_background(t_cub *cub);
+
+// Allocation and liberation
+int			free_all(t_cub *cub, int fd);
+void		free_and_print(t_cub *cub, char *str, int fd);
 
 #endif

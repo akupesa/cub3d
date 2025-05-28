@@ -68,6 +68,7 @@ typedef struct s_map
 {
 	int					width;
 	int					height;
+	char				*file;
 	char				**matrix;
 	char				**matrix_cpy;
 }						t_map;

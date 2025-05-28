@@ -52,6 +52,8 @@ static void	free_cub(t_cub *cub)
 		mlx_destroy_image(cub->mlx.ptr, cub->background.ptr);
 	if (cub->view.ptr != NULL)
 		mlx_destroy_image(cub->mlx.ptr, cub->view.ptr);
+	if (cub->map.file != NULL)
+		free(cub->map.file);
 	if (cub->map.matrix != NULL)
 		free_map(cub->map.matrix);
 	if (cub->map.matrix_cpy != NULL)
@@ -75,6 +77,7 @@ void	free_and_print(t_cub *cub, char *str, int fd)
 
 int	free_all(t_cub *cub, int fd)
 {
+	mlx_loop_end(cub->mlx.ptr);
 	free_cub(cub);
 	exit(fd);
 	return (fd);

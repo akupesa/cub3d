@@ -15,14 +15,11 @@ CC = gcc -g
 CFLAGS = -Wall -Werror -Wextra
 
 SRCS = 	srcs/all_frees.c \
-	srcs/flood_fill_validator.c \
-	srcs/get_next_line.c \
 	srcs/keys_handlers.c \
 	srcs/loop.c \
 	srcs/main.c \
 	srcs/map.c \
 	srcs/map_validator.c \
-	srcs/map_items_validator.c \
 	srcs/map_reader.c \
 	srcs/textures_to_window.c \
 	srcs/validator_args.c
@@ -36,6 +33,7 @@ MINILIBX_DIR = ./minilibx-linux
 MINILIBX = $(MINILIBX_DIR)/libmlx.a
 
 INCLUDES = -I./includes/cub3d.h -I./includes/cub3d_struct.h -I$(LIBFT_DIR)/libft.h -I$(MINILIBX_DIR)/mlx.h
+INCLUDES_FILES = ./includes/cub3d.h ./includes/cub3d_struct.h $(LIBFT_DIR)/libft.h $(MINILIBX_DIR)/mlx.h
 MLX_FLAGS = -L$(MINILIBX_DIR) -lmlx -lX11 -lXext -lm
 
 all: $(LIBFT) $(MINILIBX) $(NAME)
@@ -49,7 +47,7 @@ $(MINILIBX):
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MINILIBX) $(MLX_FLAGS) -o $(NAME)
 
-%.o: %.c $(INCLUDES)
+%.o: %.c $(INCLUDES_FILES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

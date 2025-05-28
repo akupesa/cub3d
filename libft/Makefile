@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = libft.a
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC = 	ft_isalpha.c	\
@@ -50,10 +50,11 @@ SRC = 	ft_isalpha.c	\
 	ft_putnbr_fd.c
 
 OBJ = $(SRC:.c=.o)
+INCLUDES = ./libft.h
 
 all: $(NAME)
 
-%.o: %.c
+%.o: %.c $(INCLUDES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
