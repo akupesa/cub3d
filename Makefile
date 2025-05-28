@@ -15,8 +15,12 @@ CC = gcc -g
 CFLAGS = -Wall -Werror -Wextra
 
 SRCS = 	srcs/all_frees.c \
-	srcs/hooks.c \
+	srcs/keys_handlers.c \
+	srcs/loop.c \
 	srcs/main.c \
+	srcs/map.c \
+	srcs/map_validator.c \
+	srcs/map_reader.c \
 	srcs/textures_to_window.c \
 	srcs/validator_args.c \
 	srcs/map/map.c \
