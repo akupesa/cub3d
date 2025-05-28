@@ -6,7 +6,7 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:10:29 by akupesa           #+#    #+#             */
-/*   Updated: 2025/05/28 15:51:58 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:44:48 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,16 @@ t_coords	get_coords(t_cub *cub);
 int			cub_loop(int keycode, t_cub *cub);
 
 // Controls
+void	    control_cub(int keycode, t_cub *cub);
 
 // Physics
+void	    physics_cub(t_cub *cub);
 
 // Process
+void	    process_cub(t_cub *cub);
 
 // Render
+void	    render_cub(t_cub *cub);
 void		render_background(t_cub *cub);
 
 // Allocation and liberation

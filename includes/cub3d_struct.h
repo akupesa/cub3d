@@ -6,7 +6,7 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:23 by akupesa           #+#    #+#             */
-/*   Updated: 2025/03/24 09:33:51 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:45:47 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ typedef struct s_player
 
 typedef struct s_cub
 {
+	long				prevlastframetime;
+	long				lastframetime;
+	struct timeval		frametime;
 	t_player			player;
 	t_texture			floor;
 	t_texture			ceiling;
