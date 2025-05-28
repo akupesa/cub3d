@@ -6,7 +6,7 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:10:29 by akupesa           #+#    #+#             */
-/*   Updated: 2025/03/24 09:33:56 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:51:58 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,20 @@
 // # define DOWN_KEY 65364
 # define RIGHT_KEY 65363
 
+// Vector functions
+t_vector2d	vec2d_create(double_t x, double_t y);
+t_vector2d	vec2d_zero(void);
+t_vector2d	vec2d_add(t_vector2d lop, t_vector2d rop);
+t_vector2d	vec2d_addby(t_vector2d lop, double_t rop);
+t_vector2d	vec2d_sub(t_vector2d lop, t_vector2d rop);
+t_vector2d	vec2d_subby(t_vector2d lop, double_t rop);
+t_vector2d	vec2d_mult(t_vector2d lop, t_vector2d rop);
+t_vector2d	vec2d_multby(t_vector2d lop, double_t rop);
+t_vector2d	vec2d_div(t_vector2d lop, t_vector2d rop);
+t_vector2d	vec2d_divby(t_vector2d lop, double_t rop);
+t_vector2d	vec2d_pow(t_vector2d lop, double_t rop);
+t_vector2d	vec2d_sqrt(t_vector2d lop);
+
 // Map reading
 void		load_map(t_cub *cub, const char *file_name);
 void		get_file(t_cub *cub, const char *file_name);
@@ -63,8 +77,13 @@ char		*ft_strjoint(char *s1, char *s2);
 t_coords	get_coords(t_cub *cub);
 
 // Main loop
-void		hook(t_cub *cub);
-int			keys_handler(int keycode, t_cub *cub);
+int			cub_loop(int keycode, t_cub *cub);
+
+// Controls
+
+// Physics
+
+// Process
 
 // Render
 void		render_background(t_cub *cub);

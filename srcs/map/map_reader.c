@@ -6,11 +6,11 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:41:58 by akupesa           #+#    #+#             */
-/*   Updated: 2025/03/24 09:44:59 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:57:08 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	get_color_number(t_cub *cub, int *i)
 {

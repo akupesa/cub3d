@@ -32,7 +32,8 @@ int	main(int ac, char **av)
 	render_background(cub);
 	mlx_put_image_to_window(cub->mlx.ptr, cub->mlx.window,
 		cub->background.ptr, 0, 0);
-	hook(cub);
+	mlx_hook(cub->mlx.window, 2, 1l << 0, cub_loop, cub);
+	mlx_hook(cub->mlx.window, 17, 0, free_all, cub);
 	mlx_loop(cub->mlx.ptr);
 	return (free_all(cub, 0));
 }

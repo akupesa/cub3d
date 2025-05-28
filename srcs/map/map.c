@@ -6,11 +6,11 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:16:35 by akupesa           #+#    #+#             */
-/*   Updated: 2025/03/24 09:45:12 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:57:05 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	load_map(t_cub *cub, const char *file_name)
 {

@@ -6,7 +6,7 @@
 #    By: akupesa <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 13:27:06 by akupesa           #+#    #+#              #
-#    Updated: 2025/03/06 11:24:34 by gecarval         ###   ########.fr        #
+#    Updated: 2025/05/28 16:00:54 by gecarval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,15 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRCS = 	srcs/all_frees.c \
 	srcs/keys_handlers.c \
-	srcs/loop.c \
 	srcs/main.c \
-	srcs/map.c \
-	srcs/map_validator.c \
-	srcs/map_reader.c \
 	srcs/textures_to_window.c \
-	srcs/validator_args.c
+	srcs/validator_args.c \
+	srcs/map/map.c \
+	srcs/map/map_validator.c \
+	srcs/map/map_reader.c \
+	srcs/vector/vector_init.c \
+	srcs/vector/vector_math.c \
+	srcs/vector/vector_math2.c
 
 OBJ = $(SRCS:.c=.o)
 

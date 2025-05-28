@@ -6,11 +6,11 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 18:17:48 by akupesa           #+#    #+#             */
-/*   Updated: 2025/03/24 09:45:06 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:57:12 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	is_map_empty(t_cub *cub, int i)
 {

@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   vector_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akupesa <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gecarval <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 10:22:52 by akupesa           #+#    #+#             */
-/*   Updated: 2025/02/28 10:22:54 by akupesa          ###   ########.fr       */
+/*   Created: 2025/05/28 15:44:33 by gecarval          #+#    #+#             */
+/*   Updated: 2025/05/28 15:45:00 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-void	hook(t_cub *cub)
+t_vector2d	vec2d_create(double_t x, double_t y)
 {
-	mlx_hook(cub->mlx.window, 2, 1l << 0, keys_handler, cub);
-	mlx_hook(cub->mlx.window, 17, 0, free_all, cub);
+	return ((t_vector2d){x, y});
 }
+
+t_vector2d	vec2d_zero(void)
+{
+	return ((t_vector2d){0.0, 0.0});
+}
+
