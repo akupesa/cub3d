@@ -6,7 +6,7 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 09:57:57 by akupesa           #+#    #+#             */
-/*   Updated: 2025/05/29 10:46:45 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:55:42 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,12 @@ int	cub_control_loop(int keycode, t_cub *cub)
 
 int	cub_loop(t_cub *cub)
 {
-	const double_t	process_amount = 5;
-	const double_t	time_to_call = 1.0 / process_amount;
-
 	get_frame_time(cub);
 	physics_cub(cub);
-	while (cub->time.process_call_timer > time_to_call)
+	while (cub->time.process_call_timer > PROCESS_CALL)
 	{
 		process_cub(cub);
-		cub->time.process_call_timer -= time_to_call;
+		cub->time.process_call_timer -= PROCESS_CALL;
 	}
 	physics_process_cub(cub);
 	render_cub(cub);

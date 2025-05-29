@@ -6,7 +6,7 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:10:29 by akupesa           #+#    #+#             */
-/*   Updated: 2025/05/28 16:44:48 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:56:06 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,29 @@
 # include <stdbool.h>
 # include <sys/time.h>
 
+// File read Buffer
 # define BUFFER_SIZE 42
 
+// Engine process() function call amount inside a second
+# define SECOND (double_t)1.0
+# define AMOUNT_TO_CALL (double_t)5.0
+# define PROCESS_CALL (double_t)(SECOND / AMOUNT_TO_CALL)
+
+// Window frame size
 # define WIDTH 1280
 # define HEIGHT 720
 
+// Engine Controls
 # define ESC 65307
 
+// Game Controls
 # define MLX_A 97
 # define MLX_D 100
 # define MLX_S 115
 # define MLX_W 119
-// # define UP_KEY 65362
+# define UP_KEY 65362
 # define LEFT_KEY 65361
-// # define DOWN_KEY 65364
+# define DOWN_KEY 65364
 # define RIGHT_KEY 65363
 
 // Vector functions
