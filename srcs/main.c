@@ -6,7 +6,7 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 13:12:50 by akupesa           #+#    #+#             */
-/*   Updated: 2025/03/24 09:44:31 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:31:29 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int ac, char **av)
 	render_background(cub);
 	mlx_put_image_to_window(cub->mlx.ptr, cub->mlx.window,
 		cub->background.ptr, 0, 0);
-	mlx_hook(cub->mlx.window, 2, 1l << 0, cub_control_loop, cub);
+	mlx_hook(cub->mlx.window, 2, 1l << 0, control_cub, cub);
 	mlx_hook(cub->mlx.window, 17, 0, free_all, cub);
 	mlx_loop_hook(cub->mlx.ptr, cub_loop, cub);
 	mlx_loop(cub->mlx.ptr);

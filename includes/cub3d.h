@@ -6,7 +6,7 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:10:29 by akupesa           #+#    #+#             */
-/*   Updated: 2025/05/29 10:56:06 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:38:00 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@
 # define BUFFER_SIZE 42
 
 // Engine process() function call amount inside a second
-# define SECOND (double_t)1.0
-# define AMOUNT_TO_CALL (double_t)5.0
-# define PROCESS_CALL (double_t)(SECOND / AMOUNT_TO_CALL)
+# define AMOUNT_TO_CALL (double_t)1.0 / (double_t)5.0
 
 // Window frame size
 # define WIDTH 1280
@@ -80,11 +78,10 @@ char		*ft_strjoint(char *s1, char *s2);
 t_coords	get_coords(t_cub *cub);
 
 // Main loop
-int			cub_control_loop(int keycode, t_cub *cub);
 int			cub_loop(t_cub *cub);
 
 // Controls
-void		control_cub(int keycode, t_cub *cub);
+int			control_cub(int keycode, t_cub *cub);
 
 // Physics
 void		physics_cub(t_cub *cub);

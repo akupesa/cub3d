@@ -6,7 +6,7 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 09:57:57 by akupesa           #+#    #+#             */
-/*   Updated: 2025/05/29 10:55:42 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:37:19 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,10 @@ void	get_frame_time(t_cub *cub)
 	cub->player.coords = get_coords(cub);
 }
 
-int	cub_control_loop(int keycode, t_cub *cub)
+int	control_cub(int keycode, t_cub *cub)
 {
 	if (keycode == ESC)
-	{
 		mlx_loop_end(cub->mlx.ptr);
-		free_all(cub, 0);
-	}
 	if (keycode == MLX_A)
 		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(-1, 0));
 	if (keycode == MLX_D)
@@ -52,10 +49,10 @@ int	cub_loop(t_cub *cub)
 {
 	get_frame_time(cub);
 	physics_cub(cub);
-	while (cub->time.process_call_timer > PROCESS_CALL)
+	while (cub->time.process_call_timer >= AMOUNT_TO_CALL)
 	{
 		process_cub(cub);
-		cub->time.process_call_timer -= PROCESS_CALL;
+		cub->time.process_call_timer -= AMOUNT_TO_CALL;
 	}
 	physics_process_cub(cub);
 	render_cub(cub);
