@@ -6,7 +6,7 @@
 #    By: akupesa <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 13:27:06 by akupesa           #+#    #+#              #
-#    Updated: 2025/05/28 16:00:54 by gecarval         ###   ########.fr        #
+#    Updated: 2025/05/29 11:03:22 by gecarval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,11 @@ SRCS = 	srcs/all_frees.c \
 	srcs/map/map_reader.c \
 	srcs/vector/vector_init.c \
 	srcs/vector/vector_math.c \
-	srcs/vector/vector_math2.c
+	srcs/vector/vector_math2.c \
+	srcs/engine/process.c \
+	srcs/engine/physics.c \
+	srcs/engine/physics_process.c \
+	srcs/engine/render.c
 
 OBJ = $(SRCS:.c=.o)
 
