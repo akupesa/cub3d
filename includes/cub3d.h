@@ -16,20 +16,14 @@
 # include "cub3d_struct.h"
 # include "../minilibx-linux/mlx.h"
 
-# include <time.h>
 # include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
 # include <errno.h>
 # include <fcntl.h>
-# include <limits.h>
-# include <stdint.h>
-# include <stdlib.h>
-# include <string.h>
-# include <stdarg.h>
-# include <unistd.h>
 # include <stdbool.h>
-# include <sys/stat.h>
 # include <sys/time.h>
-# include <sys/types.h>
 
 # define BUFFER_SIZE 42
 
@@ -77,19 +71,23 @@ char		*ft_strjoint(char *s1, char *s2);
 t_coords	get_coords(t_cub *cub);
 
 // Main loop
-int			cub_loop(int keycode, t_cub *cub);
+int			cub_control_loop(int keycode, t_cub *cub);
+int			cub_loop(t_cub *cub);
 
 // Controls
-void	    control_cub(int keycode, t_cub *cub);
+void		control_cub(int keycode, t_cub *cub);
 
 // Physics
-void	    physics_cub(t_cub *cub);
+void		physics_cub(t_cub *cub);
 
 // Process
-void	    process_cub(t_cub *cub);
+void		process_cub(t_cub *cub);
+
+// Physics & Process Applycation
+void		physics_process_cub(t_cub *cub);
 
 // Render
-void	    render_cub(t_cub *cub);
+void		render_cub(t_cub *cub);
 void		render_background(t_cub *cub);
 
 // Allocation and liberation

@@ -6,14 +6,31 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 09:57:57 by akupesa           #+#    #+#             */
-/*   Updated: 2025/05/28 16:46:23 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:46:45 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include <sys/select.h>
 
-void	control_cub(int keycode, t_cub *cub)
+void	get_frame_time(t_cub *cub)
+{
+	gettimeofday(&cub->time.frametime, NULL);
+	cub->time.prevlastframetime = cub->time.lastframetime;
+	cub->time.lastframetime = cub->time.frametime.tv_usec;
+	if (cub->time.lastframetime - cub->time.prevlastframetime >= 0.0)
+		cub->time.delta = (cub->time.lastframetime - cub->time.prevlastframetime) / 1000000.0;
+	cub->time.frames_per_second++;
+	cub->time.second_interval += cub->time.delta;
+	cub->time.process_call_timer += cub->time.delta;
+	if (cub->time.second_interval >= 1.0)
+	{
+		cub->time.frames_per_second = 0;
+		cub->time.second_interval = 0.0;
+	}
+	cub->player.coords = get_coords(cub);
+}
+
+int	cub_control_loop(int keycode, t_cub *cub)
 {
 	if (keycode == ESC)
 	{
@@ -28,17 +45,22 @@ void	control_cub(int keycode, t_cub *cub)
 		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, -1));
 	if (keycode == MLX_S)
 		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, 1));
-	cub->player.coords = get_coords(cub);
-	cub->prevlastframetime = cub->lastframetime;
-	gettimeofday(&cub->frametime, NULL);
-	cub->lastframetime = gettimeofday(struct timeval *__restrict tv, void *__restrict tz);
+	return (true);
 }
 
-int	cub_loop(int keycode, t_cub *cub)
+int	cub_loop(t_cub *cub)
 {
-	control_cub(keycode, cub);
-	//physics_cub(cub);
-	//process_cub(cub);
-	//render_cub(cub);
-	return (false);
+	const double_t	process_amount = 5;
+	const double_t	time_to_call = 1.0 / process_amount;
+
+	get_frame_time(cub);
+	physics_cub(cub);
+	while (cub->time.process_call_timer > time_to_call)
+	{
+		process_cub(cub);
+		cub->time.process_call_timer -= time_to_call;
+	}
+	physics_process_cub(cub);
+	render_cub(cub);
+	return (true);
 }

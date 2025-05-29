@@ -6,7 +6,7 @@
 /*   By: gecarval <gecarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:23 by akupesa           #+#    #+#             */
-/*   Updated: 2025/05/28 16:45:47 by gecarval         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:46:52 by gecarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,17 @@ typedef struct s_map
 	char				**matrix_cpy;
 }						t_map;
 
+typedef struct s_time
+{
+	long				frames_per_second;
+	long				prevlastframetime;
+	long				lastframetime;
+	struct timeval		frametime;
+	double_t			delta;
+	double_t			second_interval;
+	double_t			process_call_timer;
+}						t_time;
+
 typedef struct s_ray
 {
 	t_vector2d			ini;
@@ -92,9 +103,7 @@ typedef struct s_player
 
 typedef struct s_cub
 {
-	long				prevlastframetime;
-	long				lastframetime;
-	struct timeval		frametime;
+	t_time				time;
 	t_player			player;
 	t_texture			floor;
 	t_texture			ceiling;
