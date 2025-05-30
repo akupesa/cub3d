@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-void		render_cub(t_cub *cub)
+void	render_cub(t_cub *cub)
 {
 	(void)cub;
 }

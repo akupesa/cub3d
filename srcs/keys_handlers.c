@@ -18,7 +18,8 @@ void	get_frame_time(t_cub *cub)
 	cub->time.prevlastframetime = cub->time.lastframetime;
 	cub->time.lastframetime = cub->time.frametime.tv_usec;
 	if (cub->time.lastframetime - cub->time.prevlastframetime >= 0.0)
-		cub->time.delta = (cub->time.lastframetime - cub->time.prevlastframetime) / 1000000.0;
+		cub->time.delta = (cub->time.lastframetime
+				- cub->time.prevlastframetime) / 1000000.0;
 	cub->time.frames_per_second++;
 	cub->time.second_interval += cub->time.delta;
 	cub->time.process_call_timer += cub->time.delta;

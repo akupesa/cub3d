@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-void		physics_process_cub(t_cub *cub)
+void	physics_process_cub(t_cub *cub)
 {
 	(void)cub;
 }

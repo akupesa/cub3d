@@ -13,7 +13,7 @@
 #include "../../includes/cub3d.h"
 #include <stdio.h>
 
-void		process_cub(t_cub *cub)
+void	process_cub(t_cub *cub)
 {
 	printf("Mensagem de Routina!\n");
 	(void)cub;

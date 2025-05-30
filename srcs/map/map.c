@@ -28,6 +28,8 @@ void	load_map(t_cub *cub, const char *file_name)
 				cub->map.width = i;
 		cub->map.height++;
 	}
+	if (map_not_closed(cub) == true)
+		free_and_print(cub, "Error!\nMap is not inclosed.\n", 2);
 }
 
 t_coords	get_coords(t_cub *cub)
@@ -70,4 +72,31 @@ char	*ft_strjoint(char *s1, char *s2)
 		free(s1);
 	s1 = NULL;
 	return (result);
+}
+
+bool	map_not_closed(t_cub *cub)
+{
+	int		y;
+	int		x;
+
+	y = -1;
+	while (++y < cub->map.height)
+	{
+		x = -1;
+		while (cub->map.matrix[y][++x] != '\0')
+		{
+			if (cub->map.matrix[y][x] == '0')
+			{
+				if (x == 0 || y == 0
+					|| y == cub->map.height -1
+					|| cub->map.matrix[y][x + 1] == '\0'
+					|| cub->map.matrix[y][x + 1] == ' '
+					|| cub->map.matrix[y][x - 1] == ' '
+					|| cub->map.matrix[y + 1][x] == ' '
+					|| cub->map.matrix[y - 1][x] == ' ')
+					return (true);
+			}
+		}
+	}
+	return (false);
 }

@@ -29,7 +29,7 @@
 # define BUFFER_SIZE 42
 
 // Engine process() function call amount inside a second
-# define AMOUNT_TO_CALL (double_t)1.0 / (double_t)5.0
+# define AMOUNT_TO_CALL 0.2
 
 // Window frame size
 # define WIDTH 1280
@@ -72,6 +72,7 @@ void		map_validator(t_cub *cub);
 bool		player_validator(t_cub *cub);
 bool		chars_validator(char c);
 bool		is_there_two_n(t_cub *cub, int i);
+bool		map_not_closed(t_cub *cub);
 
 // Utils
 char		*ft_strjoint(char *s1, char *s2);
