@@ -12,6 +12,21 @@
 
 #include "../includes/cub3d.h"
 
+int	control_cub(int keycode, t_cub *cub)
+{
+	if (keycode == ESC)
+		mlx_loop_end(cub->mlx.ptr);
+	if (keycode == MLX_A)
+		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(-1, 0));
+	if (keycode == MLX_D)
+		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(1, 0));
+	if (keycode == MLX_W)
+		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, -1));
+	if (keycode == MLX_S)
+		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, 1));
+	return (true);
+}
+
 void	get_frame_time(t_cub *cub)
 {
 	gettimeofday(&cub->time.frametime, NULL);
@@ -29,21 +44,6 @@ void	get_frame_time(t_cub *cub)
 		cub->time.second_interval = 0.0;
 	}
 	cub->player.coords = get_coords(cub);
-}
-
-int	control_cub(int keycode, t_cub *cub)
-{
-	if (keycode == ESC)
-		mlx_loop_end(cub->mlx.ptr);
-	if (keycode == MLX_A)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(-1, 0));
-	if (keycode == MLX_D)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(1, 0));
-	if (keycode == MLX_W)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, -1));
-	if (keycode == MLX_S)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, 1));
-	return (true);
 }
 
 int	cub_loop(t_cub *cub)

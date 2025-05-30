@@ -6,7 +6,7 @@
 #    By: akupesa <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 13:27:06 by akupesa           #+#    #+#              #
-#    Updated: 2025/05/29 11:03:22 by gecarval         ###   ########.fr        #
+#    Updated: 2025/05/30 16:47:53 by gecarval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = gcc -g
 CFLAGS = -Wall -Werror -Wextra
 
 SRCS = 	srcs/all_frees.c \
-	srcs/keys_handlers.c \
+	srcs/hooks.c \
 	srcs/main.c \
 	srcs/textures_to_window.c \
 	srcs/validator_args.c \
