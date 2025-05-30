@@ -21,6 +21,8 @@ int	get_color_number(t_cub *cub, int *i)
 	j = 0;
 	num = 0;
 	file = cub->map.file;
+  if (!ft_isdigit(file[*i]))
+    num = 256;
 	while (file[*i] != '\0' && file[*i] != '\n' && file[*i] != ',')
 	{
 		if (j++ > 3 || !ft_isdigit(file[*i]))
@@ -29,7 +31,7 @@ int	get_color_number(t_cub *cub, int *i)
 	}
 	if (file[*i] != '\0' && file[*i] != '\n' && file[*i] == ',')
 		(*i)++;
-	if (num > 255)
+	if (num > 255 || j > 3)
 		free_and_print(cub, "Error!\nWrong color value.\n", 2);
 	return (num);
 }
