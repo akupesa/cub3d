@@ -23,6 +23,7 @@ SRCS = 	srcs/all_frees.c \
 	srcs/map_reader.c \
 	srcs/textures_to_window.c \
 	srcs/validator_args.c \
+	srcs/flood_fill_validator.c \
 	srcs/map/map.c \
 	srcs/map/map_validator.c \
 	srcs/map/map_reader.c \

@@ -12,22 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-void	flood_fill(t_cub *cub, t_coords vector)
-{
-	if (vector.x < 0 || vector.x >= cub->map.width || vector.y < 0
-		|| vector.y >= cub->map.height)
-		return ;
-	if (cub->map.matrix_cpy[vector.y][vector.x] == 'X')
-		return ;
-	if (cub->map.matrix_cpy[vector.y][vector.x] == '1')
-		return ;
-	cub->map.matrix_cpy[vector.y][vector.x] = 'X';
-	flood_fill(cub, (t_coords){vector.x + 1, vector.y});
-	flood_fill(cub, (t_coords){vector.x - 1, vector.y});
-	flood_fill(cub, (t_coords){vector.x, vector.y + 1});
-	flood_fill(cub, (t_coords){vector.x, vector.y - 1});
-}
-
 t_coords	get_coords(t_cub *cub)
 {
 	int	i;
@@ -39,7 +23,10 @@ t_coords	get_coords(t_cub *cub)
 	{
 		j = -1;
 		while (cub->map.matrix[i][++j] != '\0')
-			if (cub->map.matrix[i][j] == 'N')
+			if (cub->map.matrix[i][j] == 'N'
+			|| cub->map.matrix[i][j] == 'S'
+			|| cub->map.matrix[i][j] == 'E'
+			|| cub->map.matrix[i][j] == 'W')
 				return ((t_coords){j, i});
 	}
 	return ((t_coords){0, 0});
@@ -48,10 +35,39 @@ t_coords	get_coords(t_cub *cub)
 void	verify_path(t_cub *cub)
 {
 	t_coords	p_coords;
+	char		backup;
 
 	p_coords = get_coords(cub);
-	cub->map.matrix_cpy = map_copy(cub);
-	flood_fill(cub, p_coords);
-	if (cub->map.matrix_cpy[p_coords.y][p_coords.x] != 'X')
+	cub->map.matrix_cpy[p_coords.y][p_coords.x] = '0';
+	backup = cub->map.matrix_cpy[p_coords.y][p_coords.x];
+	if (map_not_closed(cub, (const char **)cub->map.matrix_cpy) == true)
 		free_and_print(cub, "Error\nMap is not closed\n", 2);
+	cub->map.matrix_cpy[p_coords.y][p_coords.x] = backup;
+}
+
+bool	map_not_closed(t_cub *cub, const char **matrix)
+{
+	int		y;
+	int		x;
+
+	y = -1;
+	while (++y < cub->map.height)
+	{
+		x = -1;
+		while (matrix[y][++x] != '\0')
+		{
+			if (matrix[y][x] == '0')
+			{
+				if (x == 0 || y == 0
+					|| y == cub->map.height -1
+					|| matrix[y][x + 1] == '\0'
+					|| matrix[y][x + 1] == ' '
+					|| matrix[y][x - 1] == ' '
+					|| matrix[y + 1][x] == ' '
+					|| matrix[y - 1][x] == ' ')
+					return (true);
+			}
+		}
+	}
+	return (false);
 }

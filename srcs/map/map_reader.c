@@ -82,7 +82,7 @@ void	get_texture(t_cub *cub, t_texture *rsc, int *i)
 		free_and_print(cub, "Error!\nWrong file format.\n", 2);
 }
 
-void	get_file_data(t_cub *cub)
+int	get_file_data(t_cub *cub)
 {
 	int		i;
 
@@ -107,8 +107,7 @@ void	get_file_data(t_cub *cub)
 	}
 	while (cub->map.file[i] != '\0' && cub->map.file[i] != '\n')
 		i--;
-	cub->map.matrix = ft_split(&cub->map.file[i], '\n');
-	is_map_empty(cub, i);
+	return (i);
 }
 
 void	get_file(t_cub *cub, const char *file_name)
@@ -130,5 +129,8 @@ void	get_file(t_cub *cub, const char *file_name)
 		cub->map.file = ft_strjoint(cub->map.file, buffer);
 	}
 	close(fd);
-	get_file_data(cub);
+	i = get_file_data(cub);
+	cub->map.matrix = ft_split(&cub->map.file[i], '\n');
+	cub->map.matrix_cpy = ft_split(&cub->map.file[i], '\n');
+	is_map_empty(cub, i);
 }

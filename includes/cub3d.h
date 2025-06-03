@@ -72,10 +72,11 @@ void		map_validator(t_cub *cub);
 bool		player_validator(t_cub *cub);
 bool		chars_validator(char c);
 bool		is_there_two_n(t_cub *cub, int i);
-bool		map_not_closed(t_cub *cub);
+bool		map_not_closed(t_cub *cub, const char **matrix);
 
 // Utils
 char		*ft_strjoint(char *s1, char *s2);
+void		verify_path(t_cub *cub);
 t_coords	get_coords(t_cub *cub);
 
 // Main loop
