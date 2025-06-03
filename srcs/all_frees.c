@@ -25,6 +25,10 @@ void	free_map(char **map)
 
 static void	free_textures(t_cub *cub)
 {
+	if (cub->background.ptr != NULL)
+		mlx_destroy_image(cub->mlx.ptr, cub->background.ptr);
+	if (cub->view.ptr != NULL)
+		mlx_destroy_image(cub->mlx.ptr, cub->view.ptr);
 	if (cub->texture.north.path != NULL)
 		free(cub->texture.north.path);
 	if (cub->texture.north.img.ptr != NULL)
@@ -48,10 +52,6 @@ static void	free_cub(t_cub *cub)
 	if (cub == NULL)
 		return ;
 	free_textures(cub);
-	if (cub->background.ptr != NULL)
-		mlx_destroy_image(cub->mlx.ptr, cub->background.ptr);
-	if (cub->view.ptr != NULL)
-		mlx_destroy_image(cub->mlx.ptr, cub->view.ptr);
 	if (cub->map.file != NULL)
 		free(cub->map.file);
 	if (cub->map.matrix != NULL)
