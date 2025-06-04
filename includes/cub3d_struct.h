@@ -16,6 +16,10 @@
 # include "../libft/libft.h"
 # include <math.h>
 
+# ifndef LAYERS_SIZE
+#  define LAYERS_SIZE 6
+# endif
+
 typedef struct s_list	t_list;
 
 typedef struct s_coords
@@ -49,9 +53,10 @@ typedef struct s_img
 
 typedef struct s_texture
 {
+	t_vector2d			pos;
 	t_img				img;
-	int					color;
 	char				*path;
+	int					color;
 	int					width;
 	int					height;
 }						t_texture;
@@ -105,11 +110,11 @@ typedef struct s_cub
 {
 	t_time				time;
 	t_player			player;
+	t_texture			layer[LAYERS_SIZE];
 	t_texture			floor;
 	t_texture			ceiling;
 	t_cardial			texture;
-	t_img				background;
-	t_img				view;
+	t_img				screen;
 	t_map				map;
 	t_mlx				mlx;
 }						t_cub;

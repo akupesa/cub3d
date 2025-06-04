@@ -25,10 +25,14 @@ void	free_map(char **map)
 
 static void	free_textures(t_cub *cub)
 {
-	if (cub->background.ptr != NULL)
-		mlx_destroy_image(cub->mlx.ptr, cub->background.ptr);
-	if (cub->view.ptr != NULL)
-		mlx_destroy_image(cub->mlx.ptr, cub->view.ptr);
+	int		i;
+
+	i = -1;
+	while (++i < LAYERS_SIZE)
+		if (cub->layer[i].img.ptr != NULL)
+			mlx_destroy_image(cub->mlx.ptr, cub->layer[i].img.ptr);
+	if (cub->screen.ptr != NULL)
+		mlx_destroy_image(cub->mlx.ptr, cub->screen.ptr);
 	if (cub->texture.north.path != NULL)
 		free(cub->texture.north.path);
 	if (cub->texture.north.img.ptr != NULL)

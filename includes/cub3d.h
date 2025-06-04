@@ -28,7 +28,7 @@
 // File read Buffer
 # define BUFFER_SIZE 42
 
-// Engine process() function call amount inside a second
+// Engine process() function call interval in seconds
 # define AMOUNT_TO_CALL 0.2
 
 // Window frame size
@@ -49,57 +49,61 @@
 # define RIGHT_KEY 65363
 
 // Vector functions
-t_vector2d	vec2d_create(double_t x, double_t y);
-t_vector2d	vec2d_zero(void);
-t_vector2d	vec2d_add(t_vector2d lop, t_vector2d rop);
-t_vector2d	vec2d_addby(t_vector2d lop, double_t rop);
-t_vector2d	vec2d_sub(t_vector2d lop, t_vector2d rop);
-t_vector2d	vec2d_subby(t_vector2d lop, double_t rop);
-t_vector2d	vec2d_mult(t_vector2d lop, t_vector2d rop);
-t_vector2d	vec2d_multby(t_vector2d lop, double_t rop);
-t_vector2d	vec2d_div(t_vector2d lop, t_vector2d rop);
-t_vector2d	vec2d_divby(t_vector2d lop, double_t rop);
-t_vector2d	vec2d_pow(t_vector2d lop, double_t rop);
-t_vector2d	vec2d_sqrt(t_vector2d lop);
+t_vector2d		vec2d_create(double_t x, double_t y);
+t_vector2d		vec2d_zero(void);
+t_vector2d		vec2d_add(t_vector2d lop, t_vector2d rop);
+t_vector2d		vec2d_addby(t_vector2d lop, double_t rop);
+t_vector2d		vec2d_sub(t_vector2d lop, t_vector2d rop);
+t_vector2d		vec2d_subby(t_vector2d lop, double_t rop);
+t_vector2d		vec2d_mult(t_vector2d lop, t_vector2d rop);
+t_vector2d		vec2d_multby(t_vector2d lop, double_t rop);
+t_vector2d		vec2d_div(t_vector2d lop, t_vector2d rop);
+t_vector2d		vec2d_divby(t_vector2d lop, double_t rop);
+t_vector2d		vec2d_pow(t_vector2d lop, double_t rop);
+t_vector2d		vec2d_sqrt(t_vector2d lop);
 
 // Map reading
-void		load_map(t_cub *cub, const char *file_name);
-void		get_file(t_cub *cub, const char *file_name);
+void			load_map(t_cub *cub, const char *file_name);
+void			get_file(t_cub *cub, const char *file_name);
 
 // Map validation
-void		is_map_empty(t_cub *cub, int i);
-void		map_validator(t_cub *cub);
-bool		player_validator(t_cub *cub);
-bool		chars_validator(char c);
-bool		is_there_two_n(t_cub *cub, int i);
-bool		map_not_closed(t_cub *cub, const char **matrix);
+void			is_map_empty(t_cub *cub, int i);
+void			map_validator(t_cub *cub);
+bool			player_validator(t_cub *cub);
+bool			chars_validator(char c);
+bool			is_there_two_n(t_cub *cub, int i);
+bool			map_not_closed(t_cub *cub, const char **matrix);
 
 // Utils
-char		*ft_strjoint(char *s1, char *s2);
-void		verify_path(t_cub *cub);
-t_coords	get_coords(t_cub *cub);
+void			put_image_pixel(t_cub *cub, t_img *img, t_coords pos, int color);
+int				get_image_pixel(t_cub *cub, t_img *img, t_coords pos);
+void			put_texture_pixel(t_texture *text, t_coords pos, int color);
+int				get_texture_pixel(t_texture *text, t_coords pos);
+char			*ft_strjoint(char *s1, char *s2);
+void			verify_path(t_cub *cub);
+t_coords	    get_coords(t_cub *cub);
 
 // Main loop
-int			cub_loop(t_cub *cub);
+int				cub_loop(t_cub *cub);
 
 // Controls
-int			control_cub(int keycode, t_cub *cub);
+int				control_cub(int keycode, t_cub *cub);
 
 // Physics
-void		physics_cub(t_cub *cub);
+void			physics_cub(t_cub *cub);
 
 // Process
-void		process_cub(t_cub *cub);
+void			process_cub(t_cub *cub);
 
 // Physics & Process Applycation
-void		physics_process_cub(t_cub *cub);
+void			physics_process_cub(t_cub *cub);
 
 // Render
-void		render_cub(t_cub *cub);
-void		render_background(t_cub *cub);
+void			render_cub(t_cub *cub);
+void			render_background(t_cub *cub);
 
 // Allocation and liberation
-int			free_all(t_cub *cub, int fd);
-void		free_and_print(t_cub *cub, char *str, int fd);
+int				free_all(t_cub *cub, int fd);
+void			free_and_print(t_cub *cub, char *str, int fd);
 
 #endif

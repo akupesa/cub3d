@@ -14,12 +14,21 @@
 
 void	is_map_empty(t_cub *cub, int i)
 {
-	if (cub->map.matrix == NULL || (cub->map.height == 1
-			&& cub->map.matrix[0] == NULL))
-		free_and_print(cub, "Fatal Error!\nFailure on Map Allocation\n", 1);
+	if (cub->map.matrix == NULL || cub->map.matrix[0] == NULL
+		|| cub->map.matrix[0][0] == '\0')
+		free_and_print(cub, "Error!\nNo map content.\n", 1);
 	if (is_there_two_n(cub, i) == true)
 		free_and_print(cub,
 			"Error!\nMap contains more than one followed newline.\n", 2);
+	if (cub->texture.north.path == NULL
+		|| cub->texture.south.path == NULL
+		|| cub->texture.west.path == NULL
+		|| cub->texture.east.path == NULL)
+		free_and_print(cub,
+			"Error!\nMap does not contains enough textures.\n", 2);
+	if (cub->floor.color == -1 || cub->ceiling.color == -1)
+		free_and_print(cub,
+			"Error!\nMap does not contains enough color.\n", 2);
 }
 
 bool	is_there_two_n(t_cub *cub, int i)

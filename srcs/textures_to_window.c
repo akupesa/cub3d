@@ -12,35 +12,67 @@
 
 #include "../includes/cub3d.h"
 
-static void	put_pixel(t_cub *cub, t_coords vec, int color)
+void	render_background(t_cub *cub)
+{
+	t_coords	pos;
+
+	pos.y = 0;
+	while (pos.y < cub->mlx.height / 2)
+	{
+		pos.x = -1;
+		while (++pos.x < cub->mlx.width)
+			put_texture_pixel(&cub->layer[0], pos, cub->ceiling.color);
+		pos.y++;
+	}
+	while (pos.y < cub->mlx.height)
+	{
+		pos.x = -1;
+		while (++pos.x < cub->mlx.width)
+			put_texture_pixel(&cub->layer[0], pos, cub->floor.color);
+		pos.y++;
+	}
+}
+
+void	put_texture_pixel(t_texture *text, t_coords pos, int color)
 {
 	int	offset;
 
-	offset = (vec.y * cub->background.llen)
-		+ (vec.x * (cub->background.bpp / 8));
-	*(unsigned int *)(cub->background.addr + offset) = color;
+	if (pos.x < 0 || pos.x >= text->width
+		|| pos.y < 0 || pos.y >= text->height)
+		return ;
+	offset = pos.y * text->img.llen + pos.x * (text->img.bpp / 8);
+	*(int *)(text->img.addr + offset) = color;
 }
 
-void	render_background(t_cub *cub)
+int	get_texture_pixel(t_texture *text, t_coords pos)
 {
-	t_coords	vec;
+	int	offset;
 
-	cub->background.ptr = mlx_new_image(cub->mlx.ptr, WIDTH, HEIGHT);
-	cub->background.addr = mlx_get_data_addr(cub->background.ptr,
-			&cub->background.bpp, &cub->background.llen, &cub->background.end);
-	vec.y = 0;
-	while (vec.y < HEIGHT / 2)
-	{
-		vec.x = -1;
-		while (++vec.x < WIDTH)
-			put_pixel(cub, vec, cub->ceiling.color);
-		vec.y++;
-	}
-	while (vec.y < HEIGHT)
-	{
-		vec.x = -1;
-		while (++vec.x < WIDTH)
-			put_pixel(cub, vec, cub->floor.color);
-		vec.y++;
-	}
+	if (pos.x < 0 || pos.x >= text->width
+		|| pos.y < 0 || pos.y >= text->height)
+		return (0);
+	offset = pos.y * text->img.llen + pos.x * (text->img.bpp / 8);
+	return (*(int *)(text->img.addr + offset));
+}
+
+int	get_image_pixel(t_cub *cub, t_img *img, t_coords pos)
+{
+	int	offset;
+
+	if (pos.x < 0 || pos.x >= cub->mlx.width
+		|| pos.y < 0 || pos.y >= cub->mlx.height)
+		return (0);
+	offset = pos.y * img->llen + pos.x * (img->bpp / 8);
+	return (*(int *)(img->addr + offset));
+}
+
+void	put_image_pixel(t_cub *cub, t_img *img, t_coords pos, int color)
+{
+	int	offset;
+
+	if (pos.x < 0 || pos.x >= cub->mlx.width
+		|| pos.y < 0 || pos.y >= cub->mlx.height)
+		return ;
+	offset = pos.y * img->llen + pos.x * (img->bpp / 8);
+	*(int *)(img->addr + offset) = color;
 }
