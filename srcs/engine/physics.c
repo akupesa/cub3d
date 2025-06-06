@@ -16,7 +16,14 @@ void	player_physics(t_cub *cub)
 {
 	cub->player.vel = vec2d_add(cub->player.vel,
 			vec2d_multby(cub->player.acel, cub->time.delta));
-	cub->player.acel = vec2d_pow(cub->player.acel, 0.001 * cub->time.delta);
+	if (cub->player.acel.x < 0)
+		cub->player.acel.x = -pow(-cub->player.acel.x, 0.99);
+	else
+		cub->player.acel.x = pow(cub->player.acel.x, 0.99);
+	if (cub->player.acel.y < 0)
+		cub->player.acel.y = -pow(-cub->player.acel.y, 0.99);
+	else
+		cub->player.acel.y = pow(cub->player.acel.y, 0.99);
 	cub->player.pos = vec2d_add(cub->player.pos,
 			vec2d_multby(cub->player.vel, cub->time.delta));
 	cub->player.vel = vec2d_zero();
