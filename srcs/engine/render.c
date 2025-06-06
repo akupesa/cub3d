@@ -45,8 +45,14 @@ void	render_cub(t_cub *cub)
 {
 	int		i;
 
-	put_texture_pixel(&cub->layer[LAYERS_SIZE - 1],
+	put_texture_pixel(&cub->layer[LAYERS_SIZE],
 		(t_coords){(int)cub->player.pos.x, (int)cub->player.pos.y}, 0xff0000);
+	put_texture_pixel(&cub->layer[LAYERS_SIZE],
+		(t_coords){(int)cub->player.pos.x + 1, (int)cub->player.pos.y + 1}, 0xff0000);
+	put_texture_pixel(&cub->layer[LAYERS_SIZE],
+		(t_coords){(int)cub->player.pos.x, (int)cub->player.pos.y + 1}, 0xff0000);
+	put_texture_pixel(&cub->layer[LAYERS_SIZE],
+		(t_coords){(int)cub->player.pos.x + 1, (int)cub->player.pos.y}, 0xff0000);
 	i = -1;
 	while (++i < LAYERS_SIZE)
 		paint_layer(cub, &cub->layer[i], &cub->screen);
@@ -55,6 +61,7 @@ void	render_cub(t_cub *cub)
 	while (++i < LAYERS_SIZE)
 		clear_image(cub, &cub->layer[i].img);
 	clear_image(cub, &cub->screen);
+	mlx_pixel_put(cub->mlx.ptr, cub->mlx.window, cub->player.pos.x, cub->player.pos.y, 0xff0000);
 }
 
 void	clear_image(t_cub *cub, t_img *image)

@@ -14,16 +14,18 @@
 
 int	control_cub(int keycode, t_cub *cub)
 {
+	const double_t speed = 10000;
+
 	if (keycode == ESC)
 		mlx_loop_end(cub->mlx.ptr);
 	if (keycode == MLX_A)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(-1, 0));
+		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(-speed, 0));
 	if (keycode == MLX_D)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(1, 0));
+		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(speed, 0));
 	if (keycode == MLX_W)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, -1));
+		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, -speed));
 	if (keycode == MLX_S)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, 1));
+		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, speed));
 	return (true);
 }
 
