@@ -15,6 +15,8 @@
 
 void	process_cub(t_cub *cub)
 {
-	printf("Mensagem de Routina!\n");
+	static unsigned long int i = 0;
+
+	printf("[%ld] - Mensagem de Routina!\n", i++);
 	(void)cub;
 }

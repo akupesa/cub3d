@@ -22,7 +22,6 @@
 # include <limits.h>
 # include <errno.h>
 # include <fcntl.h>
-# include <stdbool.h>
 # include <sys/time.h>
 
 // File read Buffer
@@ -90,6 +89,7 @@ int				cub_loop(t_cub *cub);
 
 // Controls
 int				control_cub(int keycode, t_cub *cub);
+int				control_release_cub(int keycode, t_cub *cub);
 
 // Physics
 void			physics_cub(t_cub *cub);

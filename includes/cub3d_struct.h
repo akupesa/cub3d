@@ -14,6 +14,7 @@
 # define CUB3D_STRUCT_H
 
 # include "../libft/libft.h"
+# include <stdbool.h>
 # include <math.h>
 
 # ifndef LAYERS_SIZE
@@ -33,6 +34,14 @@ typedef struct s_vector2d
 	double_t			x;
 	double_t			y;
 }						t_vector2d;
+
+typedef struct s_direct
+{
+	bool				up;
+	bool				down;
+	bool				left;
+	bool				right;
+}						t_direct;
 
 typedef struct s_mlx
 {
@@ -101,6 +110,7 @@ typedef struct s_player
 	t_vector2d			pos;
 	t_vector2d			vel;
 	t_vector2d			acel;
+	t_direct			direct;
 	t_coords			coords;
 	double_t			angle;
 	unsigned int		moves;

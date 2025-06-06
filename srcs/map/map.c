@@ -12,30 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-static void	load_layers(t_cub *cub);
-
-void	load_map(t_cub *cub, const char *file_name)
-{
-	int		i;
-
-	cub->floor.color = -1;
-	cub->ceiling.color = -1;
-	cub->mlx.width = WIDTH;
-	cub->mlx.height = HEIGHT;
-	get_file(cub, file_name);
-	map_validator(cub);
-	while (cub->map.matrix[cub->map.height] != NULL)
-	{
-		i = -1;
-		while (cub->map.matrix[cub->map.height][++i] != '\0')
-			if (i > cub->map.width)
-				cub->map.width = i;
-		cub->map.height++;
-	}
-	verify_path(cub);
-	load_layers(cub);
-}
-
 static void	load_layers(t_cub *cub)
 {
 	int		i;
@@ -54,6 +30,27 @@ static void	load_layers(t_cub *cub)
 	cub->screen.ptr = mlx_new_image(cub->mlx.ptr, cub->mlx.width, cub->mlx.height);
 	cub->screen.addr = mlx_get_data_addr(cub->screen.ptr, &cub->screen.bpp,
 			&cub->screen.llen, &cub->screen.end);
+}
+
+
+void	load_map(t_cub *cub, const char *file_name)
+{
+	int		i;
+
+	cub->floor.color = -1;
+	cub->ceiling.color = -1;
+	get_file(cub, file_name);
+	map_validator(cub);
+	while (cub->map.matrix[cub->map.height] != NULL)
+	{
+		i = -1;
+		while (cub->map.matrix[cub->map.height][++i] != '\0')
+			if (i > cub->map.width)
+				cub->map.width = i;
+		cub->map.height++;
+	}
+	verify_path(cub);
+	load_layers(cub);
 }
 
 char	*ft_strjoint(char *s1, char *s2)

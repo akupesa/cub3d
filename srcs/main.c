@@ -34,6 +34,7 @@ int	main(int ac, char **av)
 	load_map(cub, av[1]);
 	render_background(cub);
 	mlx_hook(cub->mlx.window, 2, 1l << 0, control_cub, cub);
+	mlx_key_hook(cub->mlx.window, control_release_cub, cub);
 	mlx_hook(cub->mlx.window, 17, 0, free_all, cub);
 	mlx_loop_hook(cub->mlx.ptr, cub_loop, cub);
 	mlx_loop(cub->mlx.ptr);

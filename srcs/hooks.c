@@ -14,18 +14,29 @@
 
 int	control_cub(int keycode, t_cub *cub)
 {
-	const double_t speed = 1000;
-
 	if (keycode == ESC)
 		mlx_loop_end(cub->mlx.ptr);
 	if (keycode == MLX_A)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(-speed, 0));
+		cub->player.direct.left = true;
 	if (keycode == MLX_D)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(speed, 0));
+		cub->player.direct.right = true;
 	if (keycode == MLX_W)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, -speed));
+		cub->player.direct.up = true;
 	if (keycode == MLX_S)
-		cub->player.acel = vec2d_add(cub->player.acel, vec2d_create(0, speed));
+		cub->player.direct.down = true;
+	return (true);
+}
+
+int				control_release_cub(int keycode, t_cub *cub)
+{
+	if (keycode == MLX_A)
+		cub->player.direct.left = false;
+	if (keycode == MLX_D)
+		cub->player.direct.right = false;
+	if (keycode == MLX_W)
+		cub->player.direct.up = false;
+	if (keycode == MLX_S)
+		cub->player.direct.down = false;
 	return (true);
 }
 
