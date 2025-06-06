@@ -42,10 +42,10 @@
 # define MLX_D 100
 # define MLX_S 115
 # define MLX_W 119
-# define UP_KEY 65362
 # define LEFT_KEY 65361
-# define DOWN_KEY 65364
 # define RIGHT_KEY 65363
+# define JUMP_KEY 32
+# define SHIFT_KEY 65505
 
 // Vector functions
 t_vector2d		vec2d_create(double_t x, double_t y);

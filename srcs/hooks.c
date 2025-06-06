@@ -24,10 +24,18 @@ int	control_cub(int keycode, t_cub *cub)
 		cub->player.direct.up = true;
 	if (keycode == MLX_S)
 		cub->player.direct.down = true;
+	if (keycode == LEFT_KEY)
+		cub->player.direct.left_turn = true;
+	if (keycode == RIGHT_KEY)
+		cub->player.direct.right_turn = true;
+	if (keycode == JUMP_KEY)
+		cub->player.direct.jump = true;
+	if (keycode == SHIFT_KEY)
+		cub->player.direct.sprint = true;
 	return (true);
 }
 
-int				control_release_cub(int keycode, t_cub *cub)
+int	control_release_cub(int keycode, t_cub *cub)
 {
 	if (keycode == MLX_A)
 		cub->player.direct.left = false;
@@ -37,6 +45,14 @@ int				control_release_cub(int keycode, t_cub *cub)
 		cub->player.direct.up = false;
 	if (keycode == MLX_S)
 		cub->player.direct.down = false;
+	if (keycode == LEFT_KEY)
+		cub->player.direct.left_turn = false;
+	if (keycode == RIGHT_KEY)
+		cub->player.direct.right_turn = false;
+	if (keycode == JUMP_KEY)
+		cub->player.direct.jump = false;
+	if (keycode == SHIFT_KEY)
+		cub->player.direct.sprint = false;
 	return (true);
 }
 
@@ -53,6 +69,9 @@ void	get_frame_time(t_cub *cub)
 	cub->time.process_call_timer += cub->time.delta;
 	if (cub->time.second_interval >= 1.0)
 	{
+		printf("fps: %ld\n", cub->time.frames_per_second);
+		printf("delta: %f\n", cub->time.delta);
+		printf("sec: %f\n", cub->time.second_interval);
 		cub->time.frames_per_second = 0;
 		cub->time.second_interval = 0.0;
 	}

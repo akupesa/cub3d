@@ -6,7 +6,7 @@
 #    By: akupesa <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/22 16:23:37 by akupesa           #+#    #+#              #
-#    Updated: 2024/05/22 16:23:40 by akupesa          ###   ########.fr        #
+#    Updated: 2025/06/06 16:29:02 by gecarval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,14 @@ NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = 	ft_isalpha.c	\
+SRC = 	ft_isalpha.c		\
 	ft_isdigit.c 		\
 	ft_isalnum.c 		\
 	ft_isascii.c 		\
 	ft_isprint.c 		\
 	ft_strlen.c 		\
 	ft_memset.c 		\
-	ft_bzero.c			\
+	ft_bzero.c		\
 	ft_memcpy.c 		\
 	ft_memmove.c 		\
 	ft_strlcpy.c 		\
@@ -34,7 +34,7 @@ SRC = 	ft_isalpha.c	\
 	ft_memchr.c 		\
 	ft_memcmp.c 		\
 	ft_strnstr.c 		\
-	ft_atoi.c 			\
+	ft_atoi.c 		\
 	ft_calloc.c 		\
 	ft_strdup.c 		\
 	ft_substr.c 		\
@@ -62,10 +62,10 @@ $(NAME): $(OBJ)
 	ranlib $(NAME)
 
 clean:
-	/bin/rm -f $(OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

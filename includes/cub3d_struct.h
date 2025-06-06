@@ -41,6 +41,10 @@ typedef struct s_direct
 	bool				down;
 	bool				left;
 	bool				right;
+	bool				left_turn;
+	bool				right_turn;
+	bool				jump;
+	bool				sprint;
 }						t_direct;
 
 typedef struct s_mlx
