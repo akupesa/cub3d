@@ -33,46 +33,46 @@ void	render_background(t_cub *cub)
 	}
 }
 
-void	put_texture_pixel(t_texture *text, t_coords pos, int color)
+void	put_texture_pixel(t_texture *text, t_coords pos, unsigned int color)
 {
-	int	offset;
+	unsigned int	offset;
 
 	if (pos.x < 0 || pos.x >= text->width
 		|| pos.y < 0 || pos.y >= text->height)
 		return ;
 	offset = pos.y * text->img.llen + pos.x * (text->img.bpp / 8);
-	*(int *)(text->img.addr + offset) = color;
+	*(unsigned int *)(text->img.addr + offset) = color;
 }
 
-int	get_texture_pixel(t_texture *text, t_coords pos)
+unsigned int	get_texture_pixel(t_texture *text, t_coords pos)
 {
-	int	offset;
+	unsigned int	offset;
 
 	if (pos.x < 0 || pos.x >= text->width
 		|| pos.y < 0 || pos.y >= text->height)
 		return (0);
 	offset = pos.y * text->img.llen + pos.x * (text->img.bpp / 8);
-	return (*(int *)(text->img.addr + offset));
+	return (*(unsigned int *)(text->img.addr + offset));
 }
 
-int	get_image_pixel(t_cub *cub, t_img *img, t_coords pos)
+unsigned int	get_image_pixel(t_cub *cub, t_img *img, t_coords pos)
 {
-	int	offset;
+	unsigned int	offset;
 
 	if (pos.x < 0 || pos.x >= cub->mlx.width
 		|| pos.y < 0 || pos.y >= cub->mlx.height)
 		return (0);
 	offset = pos.y * img->llen + pos.x * (img->bpp / 8);
-	return (*(int *)(img->addr + offset));
+	return (*(unsigned int *)(img->addr + offset));
 }
 
-void	put_image_pixel(t_cub *cub, t_img *img, t_coords pos, int color)
+void	put_image_pixel(t_cub *cub, t_img *img, t_coords pos, unsigned int color)
 {
-	int	offset;
+	unsigned int	offset;
 
 	if (pos.x < 0 || pos.x >= cub->mlx.width
 		|| pos.y < 0 || pos.y >= cub->mlx.height)
 		return ;
 	offset = pos.y * img->llen + pos.x * (img->bpp / 8);
-	*(int *)(img->addr + offset) = color;
+	*(unsigned int *)(img->addr + offset) = color;
 }

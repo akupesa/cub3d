@@ -14,7 +14,7 @@
 
 int	control_cub(int keycode, t_cub *cub)
 {
-	const double_t speed = 10000;
+	const double_t speed = 1000;
 
 	if (keycode == ESC)
 		mlx_loop_end(cub->mlx.ptr);

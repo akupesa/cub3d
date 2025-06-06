@@ -75,10 +75,12 @@ bool			is_there_two_n(t_cub *cub, int i);
 bool			map_not_closed(t_cub *cub, const char **matrix);
 
 // Utils
-void			put_image_pixel(t_cub *cub, t_img *img, t_coords pos, int color);
-int				get_image_pixel(t_cub *cub, t_img *img, t_coords pos);
-void			put_texture_pixel(t_texture *text, t_coords pos, int color);
-int				get_texture_pixel(t_texture *text, t_coords pos);
+void			put_image_pixel(t_cub *cub, t_img *img, t_coords pos,
+	unsigned int color);
+unsigned int	get_image_pixel(t_cub *cub, t_img *img, t_coords pos);
+void			put_texture_pixel(t_texture *text, t_coords pos,
+	unsigned int color);
+unsigned int	get_texture_pixel(t_texture *text, t_coords pos);
 char			*ft_strjoint(char *s1, char *s2);
 void			verify_path(t_cub *cub);
 t_coords	    get_coords(t_cub *cub);
