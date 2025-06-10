@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void	render_background(t_cub *cub)
+void	render_skybox(t_cub *cub)
 {
 	t_coords	pos;
 
@@ -21,14 +21,14 @@ void	render_background(t_cub *cub)
 	{
 		pos.x = -1;
 		while (++pos.x < cub->mlx.width)
-			put_texture_pixel(&cub->layer[0], pos, cub->ceiling.color);
+			put_image_pixel(cub, &cub->screen, pos, cub->ceiling.color);
 		pos.y++;
 	}
 	while (pos.y < cub->mlx.height)
 	{
 		pos.x = -1;
 		while (++pos.x < cub->mlx.width)
-			put_texture_pixel(&cub->layer[0], pos, cub->floor.color);
+			put_image_pixel(cub, &cub->screen, pos, cub->floor.color);
 		pos.y++;
 	}
 }

@@ -18,7 +18,7 @@
 # include <math.h>
 
 # ifndef LAYERS_SIZE
-#  define LAYERS_SIZE 6
+#  define LAYERS_SIZE 3
 # endif
 
 typedef struct s_list	t_list;

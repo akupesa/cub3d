@@ -102,7 +102,7 @@ void			physics_process_cub(t_cub *cub);
 
 // Render
 void			render_cub(t_cub *cub);
-void			render_background(t_cub *cub);
+void			render_skybox(t_cub *cub);
 
 // Allocation and liberation
 int				free_all(t_cub *cub, int fd);

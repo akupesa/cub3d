@@ -28,11 +28,8 @@ void	clear_image(t_cub *cub, t_img *image)
 
 // Layers config:
 // 0 - background;
-// 1 - background sky overlay;
-// 2 - backgroung ground overlay;
-// 3 - walls;
-// 4 - UI overlay;
-// 5 - text ovelay;
+// 1 - walls;
+// 2 - text ovelay;
 void	paint_layer(t_cub *cub, t_texture *layer)
 {
 	t_coords		pos;
@@ -81,7 +78,7 @@ void	render_cub(t_cub *cub)
 	i = 0;
 	while (++i < LAYERS_SIZE)
 		clear_image(cub, &cub->layer[i].img);
-	clear_image(cub, &cub->screen);
+	render_skybox(cub);
 	render_player(cub);
 	i = -1;
 	while (++i < LAYERS_SIZE)
