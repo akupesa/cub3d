@@ -87,7 +87,6 @@ int	cub_loop(t_cub *cub)
 		process_cub(cub);
 		cub->time.process_call_timer -= AMOUNT_TO_CALL;
 	}
-	physics_process_cub(cub);
 	render_cub(cub);
 	return (true);
 }

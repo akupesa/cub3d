@@ -12,25 +12,12 @@
 
 #include "../../includes/cub3d.h"
 
-void	player_friction(t_cub *cub)
-{
-	const double_t	friction = 0.85;
-
-	if (cub->player.acel.x < 0)
-		cub->player.acel.x = -pow(-cub->player.acel.x, friction);
-	else
-		cub->player.acel.x = pow(cub->player.acel.x, friction);
-	if (cub->player.acel.y < 0)
-		cub->player.acel.y = -pow(-cub->player.acel.y, friction);
-	else
-		cub->player.acel.y = pow(cub->player.acel.y, friction);
-}
-
 void	process_cub(t_cub *cub)
 {
-	static unsigned long int i = 0;
+	static unsigned long int	i = 0;
 
 	printf("[%ld] - Mensagem de Routina!\n", i++);
-	player_friction(cub);
+	if (i == LONG_MAX)
+		i = 0;
 	(void)cub;
 }

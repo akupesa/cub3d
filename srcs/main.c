@@ -12,13 +12,37 @@
 
 #include "../includes/cub3d.h"
 
+static void	extension_validator(t_cub *cub, char *file_name)
+{
+	int	len;
+
+	len = ft_strlen(file_name);
+	if (len < 4)
+		free_and_print(cub, "Error!\nInvalid file extension.\n", 2);
+	if (file_name[len - 4] == '.' && file_name[len - 3] == 'c' && file_name[len
+			- 2] == 'u' && file_name[len - 1] == 'b')
+		return ;
+	else
+		free_and_print(cub, "Error!\nInvalid file extension.\n", 2);
+}
+
+static void	args_counter(t_cub *cub, int ac)
+{
+	if (ac < 2)
+		free_and_print(cub, "Error!\nFew arguments.\n", 2);
+	else if (ac > 2)
+		free_and_print(cub, "Error!\nMany arguments.\n", 2);
+	else
+		return ;
+}
+
 int	main(int ac, char **av)
 {
 	t_cub	*cub;
 
 	cub = NULL;
-	if (ac != 2)
-		free_and_print(cub, "Error!\nFew or many arguments.\n", 2);
+	args_counter(cub, ac);
+	extension_validator(cub, av[1]);
 	cub = ft_calloc(1, sizeof(t_cub));
 	if (cub == NULL)
 		free_and_print(cub, "Error!\nFailed on main struct allocation.\n", 2);

@@ -21,16 +21,14 @@ int	get_color_number(t_cub *cub, int *i)
 	j = 0;
 	num = 0;
 	file = cub->map.file;
-  if (!ft_isdigit(file[*i]))
-    num = 256;
+	if (!ft_isdigit(file[*i]))
+		num = 256;
 	while (file[*i] != '\0' && file[*i] != '\n' && file[*i] != ',')
 	{
 		if (j++ > 3 || !ft_isdigit(file[*i]))
 			free_and_print(cub, "Error!\nWrong color format.\n", 2);
 		num = (num * 10) + (file[(*i)++] - '0');
 	}
-	if (file[*i] != '\0' && file[*i] != '\n' && file[*i] == ',')
-		(*i)++;
 	if (num > 255 || j > 3)
 		free_and_print(cub, "Error!\nWrong color value.\n", 2);
 	return (num);
@@ -43,14 +41,20 @@ void	get_color(t_cub *cub, t_texture *rsc, int *i)
 
 	j = -1;
 	file = cub->map.file;
+	while (file[*i] != '\0' && (file[*i] != ' ' && file[*i] != '\t'))
+		(*i)++;
+	while (file[*i] != '\0' && (file[*i] == ' ' || file[*i] == '\t'))
+		(*i)++;
 	if (rsc->color != -1)
 		free_and_print(cub, "Error!\nRepetead Color.\n", 2);
-	while (file[*i] != '\0' && file[*i] != ' ')
-		(*i)++;
-	while (file[*i] != '\0' && file[*i] == ' ')
-		(*i)++;
 	while (++j < 3)
+	{
 		rsc->color = (rsc->color << 8) + get_color_number(cub, i);
+		if (file[*i] != '\0' && file[*i] != '\n' && file[*i] == ',' && j == 2)
+			free_and_print(cub, "Error!\nWrong color format.\n", 2);
+		if (file[*i] != '\0' && file[*i] != '\n' && file[*i] == ',')
+			(*i)++;
+	}
 }
 
 void	get_texture(t_cub *cub, t_texture *rsc, int *i)
@@ -59,24 +63,24 @@ void	get_texture(t_cub *cub, t_texture *rsc, int *i)
 	char	*file;
 
 	file = cub->map.file;
-	while (file[*i] != '\0' && file[*i] != ' ')
+	while (file[*i] != '\0' && file[*i] != ' ' && file[*i] != '\t')
 		(*i)++;
-	while (file[*i] != '\0' && file[*i] == ' ')
+	while (file[*i] != '\0' && (file[*i] == ' ' || file[*i] == '\t'))
 		(*i)++;
 	len = *i;
 	while (file[len] != '\0' && file[len] != ' ' && file[len] != '\n')
 		len++;
-	rsc->path = (char *)ft_calloc((len - *i + 1), sizeof(char));
-	len = 0;
-	while (file[*i] != '\0' && file[*i] != ' ' && file[*i] != '\n')
-		rsc->path[len++] = file[(*i)++];
+	if (rsc->path == NULL)
+		rsc->path = ft_substr(file, *i, len - *i);
+	printf("|%s|\n", rsc->path);
 	if (rsc->img.ptr != NULL)
 		free_and_print(cub, "Error!\nRepetead texture source.\n", 2);
 	rsc->img.ptr = mlx_xpm_file_to_image(cub->mlx.ptr,
 			rsc->path, &rsc->width, &rsc->height);
 	if (rsc->img.ptr == NULL)
 		free_and_print(cub, "Error!\nNo texture source file found.\n", 2);
-	while (file[*i] != '\0' && file[*i] == ' ')
+	*i = len;
+	while (file[*i] != '\0' && (file[*i] == ' ' || file[*i] == '\t'))
 		(*i)++;
 	if (file[*i] != '\n')
 		free_and_print(cub, "Error!\nWrong file format.\n", 2);
@@ -105,7 +109,7 @@ int	get_file_data(t_cub *cub)
 			&& cub->map.file[i] != '\n')
 			break ;
 	}
-	while (cub->map.file[i] != '\0' && cub->map.file[i] != '\n')
+	while (cub->map.file[i] != '\0' && cub->map.file[i] != '\n' && i > 0)
 		i--;
 	return (i);
 }
@@ -119,7 +123,7 @@ void	get_file(t_cub *cub, const char *file_name)
 	i = 1;
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		free_and_print(cub, "Error!\nInvalid path or file not found.\n", 2);
+		free_and_print(cub, "Error!\nFailed to open file.\n", 2);
 	while (i > 0)
 	{
 		ft_bzero(buffer, BUFFER_SIZE + 1);
@@ -131,6 +135,5 @@ void	get_file(t_cub *cub, const char *file_name)
 	close(fd);
 	i = get_file_data(cub);
 	cub->map.matrix = ft_split(&cub->map.file[i], '\n');
-	cub->map.matrix_cpy = ft_split(&cub->map.file[i], '\n');
 	is_map_empty(cub, i);
 }

@@ -14,7 +14,8 @@
 
 static void	load_layers(t_cub *cub)
 {
-	int		i;
+	int			i;
+	t_img		*sc;
 
 	i = -1;
 	while (++i < LAYERS_SIZE)
@@ -27,11 +28,18 @@ static void	load_layers(t_cub *cub)
 		cub->layer[i].width = cub->mlx.width;
 		cub->layer[i].height = cub->mlx.height;
 	}
-	cub->screen.ptr = mlx_new_image(cub->mlx.ptr, cub->mlx.width, cub->mlx.height);
-	cub->screen.addr = mlx_get_data_addr(cub->screen.ptr, &cub->screen.bpp,
-			&cub->screen.llen, &cub->screen.end);
+	sc = &cub->screen;
+	sc->ptr = mlx_new_image(cub->mlx.ptr, cub->mlx.width, cub->mlx.height);
+	sc->addr = mlx_get_data_addr(sc->ptr, &sc->bpp, &sc->llen, &sc->end);
+	sc = &cub->texture.north.img;
+	sc->addr = mlx_get_data_addr(sc->ptr, &sc->bpp, &sc->llen, &sc->end);
+	sc = &cub->texture.south.img;
+	sc->addr = mlx_get_data_addr(sc->ptr, &sc->bpp, &sc->llen, &sc->end);
+	sc = &cub->texture.east.img;
+	sc->addr = mlx_get_data_addr(sc->ptr, &sc->bpp, &sc->llen, &sc->end);
+	sc = &cub->texture.west.img;
+	sc->addr = mlx_get_data_addr(sc->ptr, &sc->bpp, &sc->llen, &sc->end);
 }
-
 
 void	load_map(t_cub *cub, const char *file_name)
 {
@@ -40,7 +48,6 @@ void	load_map(t_cub *cub, const char *file_name)
 	cub->floor.color = -1;
 	cub->ceiling.color = -1;
 	get_file(cub, file_name);
-	map_validator(cub);
 	while (cub->map.matrix[cub->map.height] != NULL)
 	{
 		i = -1;
@@ -49,6 +56,7 @@ void	load_map(t_cub *cub, const char *file_name)
 				cub->map.width = i;
 		cub->map.height++;
 	}
+	map_validator(cub);
 	verify_path(cub);
 	load_layers(cub);
 }

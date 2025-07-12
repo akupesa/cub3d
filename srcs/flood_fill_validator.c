@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include <math.h>
 
 t_coords	get_coords(t_cub *cub)
 {
@@ -32,16 +33,46 @@ t_coords	get_coords(t_cub *cub)
 	return ((t_coords){0, 0});
 }
 
+static char	**ft_copy_map(t_cub *cub)
+{
+	int		i;
+	char	**m;
+
+	m = (char **)ft_calloc(sizeof(char *), cub->map.height + 2);
+	if (m == NULL)
+		free_and_print(cub, "Error!\nAllocation on map safe copy.\n", 2);
+	i = -1;
+	while (++i < cub->map.height)
+	{
+		m[i] = (char *)ft_calloc(sizeof(char), cub->map.width + 2);
+		if (m[i] == NULL)
+			free_and_print(cub, "Error!\nAllocation on map safe copy.\n", 2);
+		ft_memcpy(m[i], cub->map.matrix[i], ft_strlen(cub->map.matrix[i]) + 1);
+	}
+	m[i] = (char *)ft_calloc(sizeof(char), cub->map.width + 1);
+	return (m);
+}
+
 void	verify_path(t_cub *cub)
 {
 	t_coords	p_coords;
 	char		backup;
 
 	p_coords = get_coords(cub);
+	cub->map.matrix_cpy = ft_copy_map(cub);
+	cub->player.pos = (t_vector2d){p_coords.x + 0.5, p_coords.y + 0.5};
+	if (cub->map.matrix_cpy[p_coords.y][p_coords.x] == 'N')
+		cub->player.angle = M_PI + M_PI_2;
+	else if (cub->map.matrix_cpy[p_coords.y][p_coords.x] == 'S')
+		cub->player.angle = M_PI_2;
+	else if (cub->map.matrix_cpy[p_coords.y][p_coords.x] == 'E')
+		cub->player.angle = 0.0;
+	else if (cub->map.matrix_cpy[p_coords.y][p_coords.x] == 'W')
+		cub->player.angle = M_PI;
 	cub->map.matrix_cpy[p_coords.y][p_coords.x] = '0';
 	backup = cub->map.matrix_cpy[p_coords.y][p_coords.x];
 	if (map_not_closed(cub, (const char **)cub->map.matrix_cpy) == true)
-		free_and_print(cub, "Error\nMap is not closed\n", 2);
+		free_and_print(cub, "Error!\nMap is not closed\n", 2);
 	cub->map.matrix_cpy[p_coords.y][p_coords.x] = backup;
 }
 
@@ -63,6 +94,7 @@ bool	map_not_closed(t_cub *cub, const char **matrix)
 					|| matrix[y][x + 1] == '\0'
 					|| matrix[y][x + 1] == ' '
 					|| matrix[y][x - 1] == ' '
+					|| matrix[y + 1][x] == '\0'
 					|| matrix[y + 1][x] == ' '
 					|| matrix[y - 1][x] == ' ')
 					return (true);

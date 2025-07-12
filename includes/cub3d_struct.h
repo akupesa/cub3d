@@ -17,8 +17,18 @@
 # include <stdbool.h>
 # include <math.h>
 
+// Render Layers
 # ifndef LAYERS_SIZE
 #  define LAYERS_SIZE 3
+# endif
+
+// Window frame size
+# ifndef WIDTH
+#  define WIDTH 1280
+# endif
+
+# ifndef HEIGHT
+#  define HEIGHT 720
 # endif
 
 typedef struct s_list	t_list;
@@ -72,6 +82,7 @@ typedef struct s_texture
 	int					color;
 	int					width;
 	int					height;
+	bool				modified;
 }						t_texture;
 
 typedef struct s_cardial
@@ -102,13 +113,6 @@ typedef struct s_time
 	double_t			process_call_timer;
 }						t_time;
 
-typedef struct s_ray
-{
-	t_vector2d			ini;
-	t_vector2d			fin;
-	double_t			angle;
-}						t_ray;
-
 typedef struct s_player
 {
 	t_vector2d			pos;
@@ -120,17 +124,46 @@ typedef struct s_player
 	unsigned int		moves;
 }						t_player;
 
+typedef struct s_dda_data
+{
+	t_vector2d	delta_distance;
+	t_vector2d	side_distance;
+	t_coords	map_pos;
+	t_coords	step;
+	int			side;
+}	t_dda_data;
+
+typedef struct s_dda_result
+{
+	t_vector2d		dir;
+	t_vector2d		hit_point;
+	double_t		distance;
+	t_coords		map_pos;
+	t_coords		tex;
+	int				side;
+	int				end_y;
+	int				y;
+}	t_dda_result;
+
+typedef struct s_precompute {
+	t_vector2d		ray_dir[WIDTH];
+	double_t		cos_fac[WIDTH];
+	bool			raycasting_initialized;
+}	t_precompute;
+
 typedef struct s_cub
 {
-	t_time				time;
-	t_player			player;
-	t_texture			layer[LAYERS_SIZE];
+	t_precompute		pcpt;
+	t_img				screen;
+	t_cardial			texture;
 	t_texture			floor;
 	t_texture			ceiling;
-	t_cardial			texture;
-	t_img				screen;
+	t_texture			layer[LAYERS_SIZE];
+	t_player			player;
+	t_time				time;
 	t_map				map;
 	t_mlx				mlx;
+	int					column;
 }						t_cub;
 
 #endif
